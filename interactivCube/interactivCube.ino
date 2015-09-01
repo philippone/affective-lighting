@@ -19,13 +19,13 @@
 #include "MsgHandler.h";
 
 ModeManager modeMng;
-LedController ledController(64, 6);
+LedController ledController(256, 6);
 Model model;
 MsgHandler msgHandler(&model);
 
 int mode;
 unsigned long timer0;
-#define interval 1000
+#define interval 500
 // the interval in mS 
 int passed;
 
