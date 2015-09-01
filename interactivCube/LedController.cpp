@@ -33,9 +33,8 @@ void LedController::displayPinInColor(int pin, Color c) {
 void LedController::displayPinsInColor(int start, int ending, Color c) {
   for(int i=start;i<ending;i++){
     pixels->setPixelColor(i, pixels->Color(c.r,c.g,c.b)); 
-    pixels->show(); // This sends the updated pixel color to the hardware.
-
   }
+  pixels->show(); // This sends the updated pixel color to the hardware.
 }
 
 /**
@@ -52,8 +51,8 @@ void LedController::display(Color matrix[]) {
   for (int i = 0; i < sizeof(matrix)/sizeof(matrix[0]) ; i++) {
     Color c = matrix[i];
     pixels->setPixelColor(i, pixels->Color(c.r,c.g,c.b)); 
-    pixels->show(); // This sends the updated pixel color to the hardware.
   }
+  pixels->show(); // This sends the updated pixel color to the hardware.
 }
 
 /**
