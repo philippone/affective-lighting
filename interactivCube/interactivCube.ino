@@ -19,7 +19,7 @@
 #include "MsgHandler.h";
 
 ModeManager modeMng;
-LedController ledController(64, 6);
+LedController ledController(128, 6);
 Model model;
 MsgHandler msgHandler(&model);
 
