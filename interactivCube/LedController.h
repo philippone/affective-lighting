@@ -24,7 +24,7 @@ class LedController {
     void displayPinInColor(int pin, Color c);
     void displayPinsInColor(int start, int ending, Color c);
     void displayColor(Color c);
-    void display(Color matrix[]);
+    void displayPattern(Color matrix[]);
     void RotateDisplay(int index, int rotationCount);
     void displayOff();
     void displayMatrix(int index, Color c);

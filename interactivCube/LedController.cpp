@@ -47,8 +47,8 @@ void LedController::displayColor(Color c) {
 /**
 * set each pixel from the matrix to specific color
 */
-void LedController::display(Color matrix[]) {
-  for (int i = 0; i < sizeof(matrix)/sizeof(matrix[0]) ; i++) {
+void LedController::displayPattern(Color matrix[]) {
+  for (int i = 0; i < 64 ; i++) {
     Color c = matrix[i];
     pixels->setPixelColor(i, pixels->Color(c.r,c.g,c.b)); 
   }

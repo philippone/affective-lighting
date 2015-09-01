@@ -23,6 +23,21 @@ LedController ledController(256, 6);
 Model model;
 MsgHandler msgHandler(&model);
 
+Color c1 = Color(0,255,0);
+Color c2 = Color(255,0,0);
+Color c3 = Color(0,0,255);
+Color c4 = Color(255, 0, 255);
+Color mode1[64] ={
+  c1,c1,c1,c3,c3,c1,c1,c1,
+  c1,c3,c1,c1,c1,c1,c3,c1,
+  c1,c1,c1,c1,c2,c1,c1,c1,
+  c3,c1,c1,c2,c2,c1,c1,c3,
+  c3,c1,c1,c1,c2,c1,c1,c3,
+  c1,c1,c1,c1,c2,c1,c1,c1,
+  c1,c2,c1,c1,c1,c1,c3,c1,
+  c1,c1,c1,c3,c3,c1,c1,c1
+};
+
 int mode;
 unsigned long timer0;
 #define interval 500
@@ -65,22 +80,27 @@ void loop() {
 
     //switch over all modes
     if(mode == 1){
-      ledController.displayColor(Color(0,16,0));
+      ledController.displayPattern(mode1);
       }
     else if (mode == 2){
-      ledController.displayColor(Color(0,16,16));
+      //ledController.displayColor(Color(0,16,16));
+      ledController.displayPattern(mode1);
       }
     else if (mode == 3){
-      ledController.displayColor(Color(16,16,0));
+      //ledController.displayColor(Color(16,16,0));
+      ledController.displayPattern(mode1);
       }
     else if (mode == 4){
-      ledController.displayColor(Color(16,0,16));
+      //ledController.displayColor(Color(16,0,16));
+      ledController.displayPattern(mode1);
       }
     else if (mode == 5){
-      ledController.displayColor(Color(0,0,16));
+      //ledController.displayColor(Color(0,0,16));
+      ledController.displayPattern(mode1);
       }
     else if (mode == 6){
-      ledController.displayColor(Color(16,0,0));
+      //ledController.displayColor(Color(16,0,0));
+      ledController.displayPattern(mode1);
       }
     
   }
