@@ -1,5 +1,5 @@
 #include "ModeManager.h"
-
+    
 ModeManager::ModeManager() {
   
     // join I2C bus (I2Cdev library doesn't do this automatically)
@@ -20,14 +20,53 @@ boolean ModeManager::isGyroConnected() {
 }
 
 
-void ModeManager::getCurrentMode() {
+int ModeManager::getCurrentMode() {
     // read raw accel/gyro measurements from device
     accelgyro.getMotion6(&ax, &ay, &az, &gx, &gy, &gz);
+
+    int aax = abs(ax);
+    int aay = abs(ay);
+    int aaz = abs(az);
     
+    if (aax >= aay && aax >= aaz){
+      if(ax > 0){
+        return 1;
+      }
+      else{
+        return 2;
+      }
+    }else if(aay >= aax && aay >= aaz){
+      if(ay > 0){
+        return 3;
+      }
+      else{
+        return 4;
+      }
+    }else if(aaz >= aax && aaz >= aay){
+      if(az > 0){
+        return 5;
+        Serial.println("mode 5! ax:");
+        Serial.println(ax);
+      }
+      else{
+        return 6;
+        Serial.println("mode 5! ax:");
+        Serial.println(ax);
+      }
+    }
+
+
+
     
 }
 
 
 int ModeManager::getAccelX() {
   return ax;
+}
+int ModeManager::getAccelY() {
+  return ay;
+}
+int ModeManager::getAccelZ() {
+  return az;
 }

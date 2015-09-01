@@ -29,10 +29,12 @@ class ModeManager {
   public:
     ModeManager();
     //~ModeManager();
-    void getCurrentMode();
+    int getCurrentMode();
     //double getSignalPower(int x, int y, int z);
     
     int getAccelX();
+    int getAccelY();
+    int getAccelZ();
     void initGyro();
 
     boolean isGyroConnected();
