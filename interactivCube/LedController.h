@@ -22,6 +22,7 @@ class LedController {
     void displayColor(Color c);
     void display(Color matrix[]);
     void RotateDisplay(int index, int rotationCount);
+    void displayOff();
 
 };
 

@@ -32,8 +32,13 @@ void LedController::display(Color matrix[]) {
     pixels->setPixelColor(i, pixels->Color(c.r,c.g,c.b)); 
     pixels->show(); // This sends the updated pixel color to the hardware.
   }
-
 }
+  
+void LedController::displayOff() {
+  displayColor(Color(0,0,0));
+}
+
+
 
 
 void LedController::RotateDisplay(int index, int rotationCount) {
