@@ -15,9 +15,13 @@
 
 #include "ModeManager.h";
 #include "LedController.h";
+#include "Model.h";
+#include "MsgHandler.h";
 
 ModeManager modeMng;
 LedController ledController(64, 6);
+Model model;
+MsgHandler msgHandler(&model);
 
 int mode;
 unsigned long timer0;

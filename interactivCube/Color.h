@@ -1,3 +1,10 @@
+/*
+  Color.h - ColorHolder
+*/
+#ifndef Color_h
+#define Color_h
+#include <Arduino.h>
+
 class Color {
 
   private:
@@ -8,3 +15,5 @@ class Color {
     Color(int r, int g, int b);
 
 };
+
+#endif
