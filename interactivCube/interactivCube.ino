@@ -52,19 +52,19 @@ void setup() {
     // klappt nicht im consturctor von ModeManager, warum auch immer????
     modeMng.initGyro();
     Serial.println(modeMng.isGyroConnected() ? "MPU6050 connection successful" : "MPU6050 connection failed");
-
+    timer0 = millis(); // clear the timer at the end of startup
 
 
 }
 
 void loop() {
   passed = millis()-timer0;
-  //execute our code every interval (time in milliseconds)
+  //Serial.println(timer0);
   if (passed > interval) {
     timer0 = millis();
+    // TODO: nur all 500 ms aufrufen
     mode = modeMng.getCurrentMode();
-   
-    /*
+    //Serial.println(modeMng.getAccelX());
     Serial.println();
     Serial.print("Mode: ");
     Serial.print(mode);
@@ -74,8 +74,6 @@ void loop() {
     Serial.print(modeMng.getAccelY());
     Serial.print(" az: ");
     Serial.print(modeMng.getAccelZ());
-    */
-    
 
 
     //switch over all modes
