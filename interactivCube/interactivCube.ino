@@ -4,6 +4,9 @@
 #include "I2Cdev.h"
 #include "MPU6050.h"
 
+#include <Adafruit_NeoPixel.h>
+#include <avr/power.h>
+
 // Arduino Wire library is required if I2Cdev I2CDEV_ARDUINO_WIRE implementation
 // is used in I2Cdev.h
 #if I2CDEV_IMPLEMENTATION == I2CDEV_ARDUINO_WIRE
@@ -11,8 +14,10 @@
 #endif
 
 #include "ModeManager.h";
+#include "LedController.h";
 
 ModeManager modeMng;
+LedController ledController(64, 6);
 
 int mode;
 unsigned long timer0;
@@ -50,6 +55,9 @@ void loop() {
     Serial.print(modeMng.getAccelY());
     Serial.print(" az: ");
     Serial.print(modeMng.getAccelZ());
+    
+    ledController.displayColor(Color(16,16,16));
+    
   }
 }
 
