@@ -48,6 +48,19 @@ void MsgHandler::checkInput(){
 }
   
   
+void MsgHandler::hanldeHandshakeClock(String message) {
+  char *cstr = new char[message.length() + 1];
+  strcpy(cstr, message.c_str());
+  char * pch;
+  pch = strtok(cstr, ";");
+  
+  while (pch != NULL)
+  {
+    debug->println(pch);
+  }
+}
+  
+  
   /**
  * handle incomming messages
  */
@@ -55,7 +68,17 @@ void MsgHandler::handle(String message) {
   debug->print("incomming message: ");
   debug->println(message);
   
-  sendMsg(message);
+  if (message.startsWith("c;")) {
+    sendConnectionHandshake();
+  } else if (message.startsWith("hc;")) {
+    hanldeHandshakeClock(message.substring(3));
+  }
+}
+
+
+
+void MsgHandler::sendConnectionHandshake() {
+  sendMsg("c;arduino_started");
 }
 
 

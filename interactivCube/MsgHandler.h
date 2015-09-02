@@ -20,8 +20,9 @@ class MsgHandler {
     void init(Stream* s);
     void checkInput(); // check if input is available and handles it
     void sendMsg(String msg);
+    void sendConnectionHandshake();
     
-    
+    void hanldeHandshakeClock(String message);
     void addDebugStream(Stream* debugStream);
 };
 

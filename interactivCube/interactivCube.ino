@@ -56,7 +56,7 @@ void setup() {
     
     // testmsg
     delay(100);
-    msgHandler.sendMsg("c;arduino_started");
+    msgHandler.sendConnectionHandshake();
     
     // init gyro
     modeMng.initGyro();

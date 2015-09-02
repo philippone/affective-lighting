@@ -16,6 +16,10 @@ import android.widget.TextView;
 
 import net.philippschardt.interactivecube.util.MySocketService;
 
+import java.util.Calendar;
+import java.util.Date;
+import java.util.TimeZone;
+
 public class MainActivity extends Activity {
 
     private final String TAG = this.getClass().getName();
@@ -78,6 +82,12 @@ public class MainActivity extends Activity {
 
         // register Receiver
         registerReceiver(mMessageReceiver, new IntentFilter(MySocketService.BROADCAST_ACTION));
+
+
+        if (isMyServiceRunning(MySocketService.class)) {
+            replyConnectionHandshake();
+        }
+
     }
 
     @Override
@@ -135,6 +145,10 @@ public class MainActivity extends Activity {
 
             debugText.setText(message);
 
+            if (message.startsWith("c")) {
+                replyConnectionHandshake();
+            }
+
         /*if (message.startsWith("ms;")) {
             handleMotorUpdate(message);
         } else if (message.startsWith("r;"))
@@ -144,5 +158,19 @@ public class MainActivity extends Activity {
         else if (message.startsWith("br;"))
             handleBoundReply(message);*/
         }
+    }
+
+
+    private void replyConnectionHandshake() {
+        Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("GMT+1:00"));
+        Date currentLocalTime = cal.getTime();
+
+        int hours = currentLocalTime.getHours();
+        int min = currentLocalTime.getMinutes();
+        int day = currentLocalTime.getDay();
+        int year = currentLocalTime.getYear();
+        int sec = currentLocalTime.getSeconds();
+        int month = currentLocalTime.getMonth();
+        sendMsg("hc;"+hours+ ";"+ min + ";" + sec + ";" + day + ";" + month + ";" + year );
     }
 }
