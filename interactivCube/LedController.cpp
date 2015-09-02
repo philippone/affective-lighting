@@ -67,13 +67,33 @@ void LedController::displayOff() {
 */
 void LedController::displayMatrix(int index, Color c) {
   
-   int startPin = (index * matrixPinCount);
-  int endPin = ((index+1) * matrixPinCount)-1;
+  int startPin = (index * matrixPinCount);
+  int endPin = ((index+1) * matrixPinCount);
   
+  // start till endPin = on, endPin = off
   displayPinsInColor(startPin, endPin, c);
   
 
 }
+
+/**
+* display matrix with index i in color array c
+*/
+void LedController::displayMatrix(int index, Color c[]) {
+
+  // TODO: c have to be in same size as matrix (64)
+  
+  int startPin = (index * matrixPinCount);
+  int endPin = ((index+1) * matrixPinCount);
+  
+  int j = 0;
+  for (int i = startPin; i < endPin; i++) {
+    displayPinInColor(i, c[j++]);
+  }
+  
+  
+}
+
 
 // TODO
 void LedController::RotateDisplay(int index, int rotationCount) {

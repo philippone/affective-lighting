@@ -17,11 +17,14 @@
 #include "LedController.h";
 #include "Model.h";
 #include "MsgHandler.h";
+#include "ClockMode.h";
 
 ModeManager modeMng;
 LedController ledController(128, 6);
 Model model;
 MsgHandler msgHandler(&model);
+ClockMode clockMode(&ledController, &model);
+
 
 Color c1 = Color(0,255,0);
 Color c2 = Color(255,0,0);
