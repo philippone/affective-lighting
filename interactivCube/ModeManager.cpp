@@ -30,34 +30,30 @@ int ModeManager::getCurrentMode() {
     
     if (aax >= aay && aax >= aaz){
       if(ax > 0){
-        return 1;
+        return 0;
       }
       else{
-        return 2;
+        return 5;
       }
     }else if(aay >= aax && aay >= aaz){
       if(ay > 0){
-        return 3;
+        return 2;
       }
       else{
         return 4;
       }
     }else if(aaz >= aax && aaz >= aay){
       if(az > 0){
-        return 5;
-        Serial.println("mode 5! ax:");
+        return 1;
+        Serial.println("mode 1! ax:");
         Serial.println(ax);
       }
       else{
-        return 6;
+        return 3;
         Serial.println("mode 5! ax:");
         Serial.println(ax);
       }
     }
-
-
-
-    
 }
 
 
