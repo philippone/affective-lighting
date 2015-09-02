@@ -58,38 +58,7 @@ public class MySocketService extends Service {
     public void onCreate() {
         super.onCreate();
 
-        /*NotificationCompat.Builder mBuilder =
-                new NotificationCompat.Builder(this)
-                        .setSmallIcon(R.drawable.form)
-                        .setContentTitle(getResources().getString(R.string.app_name))
-                        .setContentText("Hello World!")
-                .setOngoing(true);
-
-
-
-        // Sets an ID for the notification
-        mNotificationId = 001;
-        // Gets an instance of the NotificationManager service
-        mNotifyMgr =
-                (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-        // Builds the notification and issues it.
-
-        mNotifyMgr.notify(mNotificationId, mBuilder.build());
-
-
-
-        Intent notificationIntent = new Intent(this, PanelingLamp.class);
-        PendingIntent pendingIntent=PendingIntent.getActivity(this, 0,
-                notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-
-        Notification notification = new NotificationCompat.Builder(this)
-                .setSmallIcon(R.drawable.ic_launcher)
-                .setContentText("Hi")
-                .setContentIntent(pendingIntent).build();
-
-        startForeground(mNotificationId,  notification);
-
-      */
+      Log.d(TAG, "onCreate Service");
 
         bluetoothThred = new Thread(new Runnable() {
             @Override

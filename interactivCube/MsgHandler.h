@@ -11,10 +11,18 @@ class MsgHandler {
 
   private:
     Model* model;
+    Stream* serial;
+    Stream* debug;
+    void handle(String message);
   
   public:
     MsgHandler(Model* model);
-
+    void init(Stream* s);
+    void checkInput(); // check if input is available and handles it
+    void sendMsg(String msg);
+    
+    
+    void addDebugStream(Stream* debugStream);
 };
 
 
