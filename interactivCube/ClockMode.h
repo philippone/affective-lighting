@@ -16,8 +16,11 @@ private:
 
 public:
   ClockMode(LedController* contr, Model* m);
+  void setNumber(int index, byte number);
   
 };
+
+
 
 
 #endif
