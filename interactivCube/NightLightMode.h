@@ -6,6 +6,7 @@
 #include <Arduino.h>
 #include "Color.h"
 #include "LedController.h"
+#include "Model.h"
 
 class NightLightMode {
 

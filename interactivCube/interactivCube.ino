@@ -3,6 +3,7 @@
 // for both classes must be in the include path of your project
 #include "I2Cdev.h"
 #include "MPU6050.h"
+#include <Time.h>
 
 #include <Adafruit_NeoPixel.h>
 #include <avr/power.h>
@@ -52,8 +53,8 @@ int passed;
 void setup() {
   
     Serial.begin(9600);
-    Serial1.begin(9600);
-    msgHandler.init(&Serial1);
+    //Serial1.begin(9600);
+    msgHandler.init(&Serial);
     msgHandler.addDebugStream(&Serial);
     
     // testmsg
@@ -65,6 +66,7 @@ void setup() {
     Serial.println(modeMng.isGyroConnected() ? "MPU6050 connection successful" : "MPU6050 connection failed");
     timer0 = millis(); // clear the timer at the end of startup
 
+    setTime(17,45,19,2,9,15);
 }
 
 void loop() {

@@ -4,6 +4,7 @@
 #ifndef MsgHandler_h
 #define MsgHandler_h
 #include <Arduino.h>
+#include <Time.h>
 
 #include "Model.h"
 
@@ -14,6 +15,7 @@ class MsgHandler {
     Stream* serial;
     Stream* debug;
     void handle(String message);
+    String getValue(String data, char separator, int index);
   
   public:
     MsgHandler(Model* model);
