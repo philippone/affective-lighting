@@ -19,13 +19,13 @@
 #include "MsgHandler.h";
 
 ModeManager modeMng;
-LedController ledController(256, 6);
+LedController ledController(128, 6);
 Model model;
 MsgHandler msgHandler(&model);
 
 int mode;
 unsigned long timer0;
-#define interval 500
+#define interval 1000
 // the interval in mS 
 int passed;
 
@@ -60,7 +60,7 @@ void loop() {
     Serial.print(" az: ");
     Serial.print(modeMng.getAccelZ());
     
-    ledController.displayColor(Color(16,16,16));
+    ledController.displayColor(Color(0,0,16));
     
   }
 }

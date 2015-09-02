@@ -1,7 +1,7 @@
 #include "Color.h"
 
 
-Color::Color(int red, int green, int blue) {
+Color::Color(byte red, byte green, byte blue) {
   r = red;
   g = green;
   b = blue;

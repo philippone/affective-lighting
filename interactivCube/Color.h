@@ -11,8 +11,8 @@ class Color {
     
     
   public:
-  int r,g,b;
-    Color(int r, int g, int b);
+  byte r,g,b;
+    Color(byte r, byte g, byte b);
 
 };
 
