@@ -30,6 +30,7 @@ Color c1 = Color(0,255,0);
 Color c2 = Color(255,0,0);
 Color c3 = Color(0,0,255);
 Color c4 = Color(255, 0, 255);
+Color c5 = Color(0,0,0);
 Color mode1[64] ={
   c1,c1,c1,c3,c3,c1,c1,c1,
   c1,c3,c1,c1,c1,c1,c3,c1,
@@ -55,7 +56,6 @@ void setup() {
     // klappt nicht im consturctor von ModeManager, warum auch immer????
     modeMng.initGyro();
     Serial.println(modeMng.isGyroConnected() ? "MPU6050 connection successful" : "MPU6050 connection failed");
-    timer0 = millis(); // clear the timer at the end of startup
 
 
 }
@@ -82,27 +82,40 @@ void loop() {
 
     //switch over all modes
     if(mode == 1){
-      ledController.displayPattern(mode1);
+      //ledController.displayPattern(mode1);
+      ledController.displayPinInColor(0, c2);
+      //clockMode.setNumber(11, 2, 0);
       }
     else if (mode == 2){
       //ledController.displayColor(Color(0,16,16));
-      ledController.displayPattern(mode1);
+      //ledController.displayPattern(mode1);
+            //ledController.displayPinInColor(0, c5);
+            clockMode.setNumber(11, 2, 0);
+            clockMode.setMinutesClock1(52,0);
       }
     else if (mode == 3){
       //ledController.displayColor(Color(16,16,0));
-      ledController.displayPattern(mode1);
+      //ledController.displayPattern(mode1);
+            ledController.displayPinInColor(0, c2);
+            //clockMode.setNumber(11, 2, 0);
       }
     else if (mode == 4){
       //ledController.displayColor(Color(16,0,16));
-      ledController.displayPattern(mode1);
+      //ledController.displayPattern(mode1);
+            ledController.displayPinInColor(0, c2);
+            //clockMode.setNumber(11, 2, 0);
       }
     else if (mode == 5){
       //ledController.displayColor(Color(0,0,16));
-      ledController.displayPattern(mode1);
+      //ledController.displayPattern(mode1);
+            ledController.displayPinInColor(0, c2);
+            //clockMode.setNumber(11, 2, 0);
       }
     else if (mode == 6){
       //ledController.displayColor(Color(16,0,0));
-      ledController.displayPattern(mode1);
+      //ledController.displayPattern(mode1);
+            ledController.displayPinInColor(0, c2);
+           //clockMode.setNumber(11, 2, 0);
       }    
   }
 }
