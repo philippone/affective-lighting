@@ -29,6 +29,7 @@ class LedController {
     void displayOff();
     void displayMatrix(int index, Color c);
     void displayMatrix(int index, Color c[]);
+    void displayPinOnMatrix(int m, int p, Color c);
 
 };
 
