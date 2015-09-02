@@ -21,7 +21,7 @@
 #include "ClockMode.h";
 
 ModeManager modeMng;
-LedController ledController(128, 6);
+LedController ledController(384, 6);
 Model model;
 MsgHandler msgHandler(&model);
 ClockMode clockMode(&ledController, &model);
@@ -52,8 +52,8 @@ int passed;
 
 void setup() {
     Serial.begin(9600);
-    Serial1.begin(9600);
-    msgHandler.init(&Serial1);
+    //Serial1.begin(9600);
+    msgHandler.init(&Serial);
     msgHandler.addDebugStream(&Serial);
     
     // testmsg
@@ -64,9 +64,7 @@ void setup() {
     modeMng.initGyro();
     Serial.println(modeMng.isGyroConnected() ? "MPU6050 connection successful" : "MPU6050 connection failed");
 
-
-    setTime(16,45,19,2,9,15);
-
+    setTime(16,30,19,2,9,15);
 }
 
 void loop() {
@@ -81,8 +79,8 @@ void loop() {
     mode = modeMng.getCurrentMode();
     //Serial.println(modeMng.getAccelX());
     
-    /*
-    Serial.println();
+    
+  /*  Serial.println();
     Serial.print("Mode: ");
     Serial.print(mode);
     Serial.print(" ax: ");
@@ -91,8 +89,8 @@ void loop() {
     Serial.print(modeMng.getAccelY());
     Serial.print(" az: ");
     Serial.print(modeMng.getAccelZ());
-
 */
+
 
     //switch over all modes
     if(mode == 1){
@@ -104,8 +102,8 @@ void loop() {
       //ledController.displayColor(Color(0,16,16));
       //ledController.displayPattern(mode1);
             //ledController.displayPinInColor(0, c5);
-            clockMode.setNumber(11, 2, 0);
-            clockMode.setMinutesClock1(52,0);
+            clockMode.setNumber(0, hourFormat12(), 0);
+            clockMode.setMinutesClock1(minute(),0);
       }
     else if (mode == 3){
       //ledController.displayColor(Color(16,16,0));

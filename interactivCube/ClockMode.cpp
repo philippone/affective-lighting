@@ -1,7 +1,7 @@
 #include "ClockMode.h"
 
 //initialize with a value higher as the highest possible index
-  byte indicesToSet[13];
+  byte indicesToSet[16];
 
 
   
@@ -18,7 +18,7 @@ ClockMode::ClockMode(LedController* contr, Model* m) {
 
   void ClockMode::setNumber(byte sIndex, byte number, byte ledPanelIndex) {
     //reset array
-    for(int i=0;i<13;i++){
+    for(int i=0;i<16;i++){
       indicesToSet[i]=64;
     }
    
@@ -80,6 +80,8 @@ ClockMode::ClockMode(LedController* contr, Model* m) {
         indicesToSet[4]=sIndex+17;
         indicesToSet[5]=sIndex+18;
         indicesToSet[6]=sIndex+26;
+        indicesToSet[7]=sIndex+34;
+        indicesToSet[8]=sIndex+2;
       break;
 
       case 5:
@@ -151,13 +153,66 @@ ClockMode::ClockMode(LedController* contr, Model* m) {
         indicesToSet[10]=sIndex+33;
         indicesToSet[11]=sIndex+34;
       break;
+
+      case 10:
+        indicesToSet[0]=sIndex;
+        indicesToSet[1]=sIndex+2;
+        indicesToSet[2]=sIndex+3;
+        indicesToSet[3]=sIndex+4;
+        indicesToSet[4]=sIndex+8;
+        indicesToSet[5]=sIndex+11;
+        indicesToSet[6]=sIndex+13;
+        indicesToSet[7]=sIndex+16;
+        indicesToSet[8]=sIndex+19;
+        indicesToSet[9]=sIndex+21;
+        indicesToSet[10]=sIndex+24;
+        indicesToSet[11]=sIndex+27;
+        indicesToSet[12]=sIndex+29;
+        indicesToSet[13]=sIndex+32;
+        indicesToSet[14]=sIndex+35;
+        indicesToSet[15]=sIndex+36;
+        indicesToSet[16]=sIndex+37;
+      break;
+
+      case 11:
+        indicesToSet[0]=sIndex;
+        indicesToSet[1]=sIndex+2;
+        indicesToSet[2]=sIndex+8;
+        indicesToSet[3]=sIndex+10;
+        indicesToSet[4]=sIndex+16;
+        indicesToSet[5]=sIndex+18;
+        indicesToSet[6]=sIndex+24;
+        indicesToSet[7]=sIndex+26;
+        indicesToSet[8]=sIndex+32;
+        indicesToSet[9]=sIndex+34;
+      break;
+
+      case 12:
+        indicesToSet[0]=sIndex;
+        indicesToSet[1]=sIndex+2;
+        indicesToSet[2]=sIndex+3;
+        indicesToSet[3]=sIndex+4;
+        indicesToSet[4]=sIndex+8;
+        indicesToSet[5]=sIndex+13;
+        indicesToSet[6]=sIndex+16;
+        indicesToSet[7]=sIndex+19;
+        indicesToSet[8]=sIndex+20;
+        indicesToSet[9]=sIndex+21;
+        indicesToSet[10]=sIndex+24;
+        indicesToSet[11]=sIndex+27;
+        indicesToSet[12]=sIndex+32;
+        indicesToSet[13]=sIndex+35;
+        indicesToSet[14]=sIndex+36;
+        indicesToSet[15]=sIndex+37;
+      break;
+
+      default:
+      break;
       }
 
-    for(int i=0;i<13;i++){
+    for(int i=0;i<16;i++){
       if(indicesToSet[i] < 64){
         ledController->displayPinOnMatrix(ledPanelIndex, indicesToSet[i], c1); 
-         Serial.print("Index set: ");
-        Serial.println(indicesToSet[i]);
       } 
     }
   }
