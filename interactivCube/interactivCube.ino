@@ -64,8 +64,7 @@ void setup() {
     Serial.println(modeMng.isGyroConnected() ? "MPU6050 connection successful" : "MPU6050 connection failed");
     timer0 = millis(); // clear the timer at the end of startup
 
-
-    setTime(16,45,19,2,9,15);
+    setTime(17,45,19,2,9,15);
 
 }
 

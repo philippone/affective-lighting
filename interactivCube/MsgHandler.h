@@ -15,6 +15,7 @@ class MsgHandler {
     Stream* serial;
     Stream* debug;
     void handle(String message);
+    String getValue(String data, char separator, int index);
   
   public:
     MsgHandler(Model* model);
