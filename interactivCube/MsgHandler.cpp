@@ -58,6 +58,11 @@ void MsgHandler::hanldeHandshakeClock(String message) {
   {
     debug->println(pch);
   }
+  
+  
+  
+  // set time in model
+  //setTime(h,mi,19,2,9,15);
 }
   
   

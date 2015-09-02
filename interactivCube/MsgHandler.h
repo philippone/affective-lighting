@@ -4,6 +4,7 @@
 #ifndef MsgHandler_h
 #define MsgHandler_h
 #include <Arduino.h>
+#include <Time.h>
 
 #include "Model.h"
 
