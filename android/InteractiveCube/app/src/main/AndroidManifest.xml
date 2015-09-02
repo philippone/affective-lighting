@@ -21,7 +21,7 @@
 
 
         <service
-            android:name=".MySocketService"
+            android:name=".util.MySocketService"
             android:exported="false" >
         </service>
 

@@ -3,6 +3,7 @@
 // for both classes must be in the include path of your project
 #include "I2Cdev.h"
 #include "MPU6050.h"
+#include <Time.h>
 
 #include <Adafruit_NeoPixel.h>
 #include <avr/power.h>
@@ -51,16 +52,27 @@ int passed;
 
 void setup() {
     Serial.begin(9600);
+    Serial1.begin(9600);
+    msgHandler.init(&Serial1);
+    msgHandler.addDebugStream(&Serial);
+    
+    // testmsg
+    delay(100);
+    msgHandler.sendConnectionHandshake();
     
     // init gyro
-    // klappt nicht im consturctor von ModeManager, warum auch immer????
     modeMng.initGyro();
     Serial.println(modeMng.isGyroConnected() ? "MPU6050 connection successful" : "MPU6050 connection failed");
 
 
+    setTime(16,45,19,2,9,15);
+
 }
 
 void loop() {
+  // check if input is available
+  msgHandler.checkInput();
+  
   passed = millis()-timer0;
   //Serial.println(timer0);
   if (passed > interval) {
@@ -68,6 +80,8 @@ void loop() {
     // TODO: nur all 500 ms aufrufen
     mode = modeMng.getCurrentMode();
     //Serial.println(modeMng.getAccelX());
+    
+    /*
     Serial.println();
     Serial.print("Mode: ");
     Serial.print(mode);
@@ -78,7 +92,7 @@ void loop() {
     Serial.print(" az: ");
     Serial.print(modeMng.getAccelZ());
 
-
+*/
 
     //switch over all modes
     if(mode == 1){

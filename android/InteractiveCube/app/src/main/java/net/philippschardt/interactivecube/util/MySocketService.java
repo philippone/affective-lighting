@@ -21,7 +21,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Set;
+import java.util.TimeZone;
 import java.util.UUID;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -58,38 +61,7 @@ public class MySocketService extends Service {
     public void onCreate() {
         super.onCreate();
 
-        /*NotificationCompat.Builder mBuilder =
-                new NotificationCompat.Builder(this)
-                        .setSmallIcon(R.drawable.form)
-                        .setContentTitle(getResources().getString(R.string.app_name))
-                        .setContentText("Hello World!")
-                .setOngoing(true);
-
-
-
-        // Sets an ID for the notification
-        mNotificationId = 001;
-        // Gets an instance of the NotificationManager service
-        mNotifyMgr =
-                (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-        // Builds the notification and issues it.
-
-        mNotifyMgr.notify(mNotificationId, mBuilder.build());
-
-
-
-        Intent notificationIntent = new Intent(this, PanelingLamp.class);
-        PendingIntent pendingIntent=PendingIntent.getActivity(this, 0,
-                notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-
-        Notification notification = new NotificationCompat.Builder(this)
-                .setSmallIcon(R.drawable.ic_launcher)
-                .setContentText("Hi")
-                .setContentIntent(pendingIntent).build();
-
-        startForeground(mNotificationId,  notification);
-
-      */
+      Log.d(TAG, "onCreate Service");
 
         bluetoothThred = new Thread(new Runnable() {
             @Override
@@ -319,10 +291,17 @@ public class MySocketService extends Service {
     }
 
     private void notifyGUI(String message) {
+
+        /*if (message.startsWith("c")) {
+            replyConnectionHandshake();
+        }*/
+
         Intent intent = new Intent(BROADCAST_ACTION);
         intent.putExtra(EXTRA_MESSAGE_FORWARD, message);
         sendBroadcast(intent);
     }
+
+
 
 
 }
