@@ -90,9 +90,18 @@ void LedController::displayMatrix(int index, Color c[]) {
   for (int i = startPin; i < endPin; i++) {
     displayPinInColor(i, c[j++]);
   }
-  
-  
 }
+
+/**
+* colors a pin on matrix with index in color c
+*/
+void LedController::displayPinOnMatrix(int index, int pin, Color c) {
+  int matrixStartPin = (index * matrixPinCount);
+  
+  displayPinInColor(matrixStartPin + pin, c);
+
+}
+
 
 
 // TODO
