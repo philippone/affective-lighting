@@ -23,7 +23,7 @@ LedController::LedController(uint16_t count, uint8_t pin) {
 */
 void LedController::displayPinInColor(int pin, Color c) {
     pixels->setPixelColor(pin, pixels->Color(c.r,c.g,c.b)); 
-    pixels->show(); // This sends the updated pixel color to the hardware.
+    //pixels->show(); // This sends the updated pixel color to the hardware.
 }
 
 
@@ -34,7 +34,7 @@ void LedController::displayPinsInColor(int start, int ending, Color c) {
   for(int i=start;i<ending;i++){
     pixels->setPixelColor(i, pixels->Color(c.r,c.g,c.b)); 
   }
-  pixels->show(); // This sends the updated pixel color to the hardware.
+  //pixels->show(); // This sends the updated pixel color to the hardware.
 }
 
 /**
@@ -52,7 +52,7 @@ void LedController::displayPattern(Color matrix[]) {
     Color c = matrix[i];
     pixels->setPixelColor(i, pixels->Color(c.r,c.g,c.b)); 
   }
-  pixels->show(); // This sends the updated pixel color to the hardware.
+  //pixels->show(); // This sends the updated pixel color to the hardware.
 }
 
 /**
@@ -102,7 +102,9 @@ void LedController::displayPinOnMatrix(int index, int pin, Color c) {
 
 }
 
-
+void LedController::showMatrix() {
+   pixels->show(); // This sends the updated pixel color to the hardware.
+}
 
 // TODO
 void LedController::RotateDisplay(int index, int rotationCount) {
