@@ -57,11 +57,16 @@ void ClockMode::execute(byte clockDesign) {
 
       ledController->displayColor(clock1Background);
 
+      //set start position of the hour
+      int sIndex = 0;
+      if(hourFormat12()<10)
+        sIndex = 2;
+
       //set hours on all 4 sides
-      setHours1(0, 12, 0, clock1Hours);
-      setHours1(0, hourFormat12(), 2, clock1Hours);
-      setHours1(0, hourFormat12(), 4, clock1Hours);
-      setHours1(0, 12, 5, clock1Hours);
+      setHours1(sIndex, hourFormat12(), 0, clock1Hours);
+      setHours1(sIndex, hourFormat12(), 2, clock1Hours);
+      setHours1(sIndex, hourFormat12(), 4, clock1Hours);
+      setHours1(sIndex, hourFormat12(), 5, clock1Hours);
 
       //set minutes on all 4 sides
       setMinutesClock1(minute(), 0, clock1Minutes, clock1MinutesDark);
@@ -71,7 +76,6 @@ void ClockMode::execute(byte clockDesign) {
 
       break;
   }
-
 
   rotate(2, 1);
   rotate(5, 2);
