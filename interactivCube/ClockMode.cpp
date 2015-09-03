@@ -58,10 +58,10 @@ void ClockMode::execute(byte clockDesign) {
       ledController->displayColor(clock1Background);
 
       //set hours on all 4 sides
-      setHours1(0, hourFormat12(), 0, clock1Hours);
+      setHours1(0, 12, 0, clock1Hours);
       setHours1(0, hourFormat12(), 2, clock1Hours);
       setHours1(0, hourFormat12(), 4, clock1Hours);
-      setHours1(0, hourFormat12(), 5, clock1Hours);
+      setHours1(0, 12, 5, clock1Hours);
 
       //set minutes on all 4 sides
       setMinutesClock1(minute(), 0, clock1Minutes, clock1MinutesDark);
@@ -93,7 +93,7 @@ void ClockMode::rotate(int index, int rotations) {
 
 void ClockMode::setHours1(byte sIndex, byte number, byte ledPanelIndex, Color cHour) {
   //reset array
-  for (int i = 0; i < 16; i++) {
+  for (int i = 0; i < 17; i++) {
     indicesToSet[i] = 64;
   }
 
@@ -107,8 +107,10 @@ void ClockMode::setHours1(byte sIndex, byte number, byte ledPanelIndex, Color cH
       indicesToSet[5] = sIndex + 16;
       indicesToSet[6] = sIndex + 18;
       indicesToSet[7] = sIndex + 24;
-      indicesToSet[6] = sIndex + 25;
-      indicesToSet[7] = sIndex + 26;
+      indicesToSet[8] = sIndex + 26;
+      indicesToSet[9] = sIndex + 32;
+      indicesToSet[10] = sIndex + 33;
+      indicesToSet[11] = sIndex + 34;
       break;
 
     case 1:
@@ -142,9 +144,9 @@ void ClockMode::setHours1(byte sIndex, byte number, byte ledPanelIndex, Color cH
       indicesToSet[5] = sIndex + 17;
       indicesToSet[6] = sIndex + 18;
       indicesToSet[7] = sIndex + 26;
-      indicesToSet[6] = sIndex + 32;
-      indicesToSet[7] = sIndex + 33;
-      indicesToSet[8] = sIndex + 34;
+      indicesToSet[8] = sIndex + 32;
+      indicesToSet[9] = sIndex + 33;
+      indicesToSet[10] = sIndex + 34;
       break;
 
     case 4:
@@ -177,7 +179,7 @@ void ClockMode::setHours1(byte sIndex, byte number, byte ledPanelIndex, Color cH
       indicesToSet[0] = sIndex;
       indicesToSet[1] = sIndex + 1;
       indicesToSet[2] = sIndex + 2;
-      indicesToSet[3] = sIndex + 10;
+      indicesToSet[3] = sIndex + 8;
       indicesToSet[4] = sIndex + 16;
       indicesToSet[5] = sIndex + 17;
       indicesToSet[6] = sIndex + 18;
@@ -235,18 +237,18 @@ void ClockMode::setHours1(byte sIndex, byte number, byte ledPanelIndex, Color cH
       indicesToSet[2] = sIndex + 3;
       indicesToSet[3] = sIndex + 4;
       indicesToSet[4] = sIndex + 8;
-      indicesToSet[5] = sIndex + 11;
-      indicesToSet[6] = sIndex + 13;
+      indicesToSet[5] = sIndex + 10;
+      indicesToSet[6] = sIndex + 12;
       indicesToSet[7] = sIndex + 16;
-      indicesToSet[8] = sIndex + 19;
-      indicesToSet[9] = sIndex + 21;
+      indicesToSet[8] = sIndex + 18;
+      indicesToSet[9] = sIndex + 20;
       indicesToSet[10] = sIndex + 24;
-      indicesToSet[11] = sIndex + 27;
-      indicesToSet[12] = sIndex + 29;
+      indicesToSet[11] = sIndex + 26;
+      indicesToSet[12] = sIndex + 28;
       indicesToSet[13] = sIndex + 32;
-      indicesToSet[14] = sIndex + 35;
-      indicesToSet[15] = sIndex + 36;
-      indicesToSet[16] = sIndex + 37;
+      indicesToSet[14] = sIndex + 34;
+      indicesToSet[15] = sIndex + 35;
+      indicesToSet[16] = sIndex + 36;
       break;
 
     case 11:
@@ -268,24 +270,24 @@ void ClockMode::setHours1(byte sIndex, byte number, byte ledPanelIndex, Color cH
       indicesToSet[2] = sIndex + 3;
       indicesToSet[3] = sIndex + 4;
       indicesToSet[4] = sIndex + 8;
-      indicesToSet[5] = sIndex + 13;
+      indicesToSet[5] = sIndex + 12;
       indicesToSet[6] = sIndex + 16;
-      indicesToSet[7] = sIndex + 19;
-      indicesToSet[8] = sIndex + 20;
-      indicesToSet[9] = sIndex + 21;
+      indicesToSet[7] = sIndex + 18;
+      indicesToSet[8] = sIndex + 19;
+      indicesToSet[9] = sIndex + 20;
       indicesToSet[10] = sIndex + 24;
-      indicesToSet[11] = sIndex + 27;
+      indicesToSet[11] = sIndex + 26;
       indicesToSet[12] = sIndex + 32;
-      indicesToSet[13] = sIndex + 35;
-      indicesToSet[14] = sIndex + 36;
-      indicesToSet[15] = sIndex + 37;
+      indicesToSet[13] = sIndex + 34;
+      indicesToSet[14] = sIndex + 35;
+      indicesToSet[15] = sIndex + 36;
       break;
 
     default:
       break;
   }
 
-  for (int i = 0; i < 16; i++) {
+  for (int i = 0; i < 17; i++) {
     if (indicesToSet[i] < 64) {
       ledController->displayPinOnMatrix(ledPanelIndex, indicesToSet[i], cHour);
     }
