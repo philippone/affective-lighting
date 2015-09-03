@@ -106,6 +106,11 @@ void LedController::showMatrix() {
    pixels->show(); // This sends the updated pixel color to the hardware.
 }
 
+
+Adafruit_NeoPixel* LedController::getDisplay() {
+  return pixels;
+}
+
 // TODO
 void LedController::RotateDisplay(int index, int rotationCount) {
 }
