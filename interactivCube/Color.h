@@ -13,7 +13,7 @@ class Color {
   public:
   byte r,g,b;
   Color();
-    Color(byte r, byte g, byte b);
+  Color(byte r, byte g, byte b);
 
 };
 
