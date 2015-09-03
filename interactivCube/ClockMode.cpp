@@ -55,6 +55,8 @@ ClockMode::ClockMode(LedController* contr, Model* m) {
       clockMatrix[i]=clock1Background;
       }
 
+      ledController->displayColor(clock1Background);
+
               //set hours on all 4 sides
         setHours1(0, hourFormat12(), 0, clock1Hours);
         setHours1(0, hourFormat12(), 2, clock1Hours);
@@ -70,8 +72,34 @@ ClockMode::ClockMode(LedController* contr, Model* m) {
     break;
     }
 
+    ledController->getCurrentPixelMatrix(0);
+/*
+    Adafruit_NeoPixel* pixels = ledController->getDisplay();
+    uint8_t* array = pixels->getPixels();
+
+    uint8_t value = 25;
+
+    Color tempC(array[0], array[1], array[2]);
+
+    ledController->displayPinInColor(0,Color(0,0,0));
+*
+        
+ledController->showMatrix();
+      delay(1000);
+    ledController->displayPinInColor(0,tempC);
+
+/*
+    array[0] =0;
+array[1] = 0;
+array[2] = 0;
+array[4] = 255;
+  */  
+    
+    
+ledController->showMatrix();
       
     }
+    
 
   void ClockMode::setHours1(byte sIndex, byte number, byte ledPanelIndex, Color cHour) {
     //reset array

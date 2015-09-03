@@ -112,6 +112,20 @@ Adafruit_NeoPixel* LedController::getDisplay() {
   return pixels;
 }
 
+
+Color* LedController::getCurrentPixelMatrix(int index) {
+
+  uint8_t* array = pixels->getPixels();
+  Color* matrix = new Color[matrixPinCount];
+
+  int j = index * matrixPinCount * 3;
+  for (int i = 0; i < matrixPinCount; i++) {
+    matrix[i] = Color(array[j++], array[j++], array[j++]);
+  }
+      
+  return matrix;  
+}
+
 // TODO
 void LedController::RotateDisplay(int index, int rotationCount) {
 }

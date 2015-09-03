@@ -32,6 +32,8 @@ class LedController {
     void displayPinOnMatrix(int m, int p, Color c);
     void showMatrix();
 
+    Color* getCurrentPixelMatrix(int index); 
+
     Adafruit_NeoPixel* getDisplay();
 
 };
