@@ -6,3 +6,9 @@ Color::Color(byte red, byte green, byte blue) {
   g = green;
   b = blue;
 }
+
+Color::Color(){
+  r = 0;
+  g = 0;
+  b = 0;  
+}

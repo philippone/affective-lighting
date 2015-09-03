@@ -18,6 +18,7 @@ class LedController {
     uint8_t ledPin;
     Adafruit_NeoPixel* pixels;
     
+    
   
   public:
     LedController(uint16_t count, uint8_t pin);
@@ -25,7 +26,8 @@ class LedController {
     void displayPinsInColor(int start, int ending, Color c);
     void displayColor(Color c);
     void displayPattern(Color matrix[]);
-    void RotateDisplay(int index, int rotationCount);
+    void RotateDisplay(int rotationCount, Color matrix[]);
+    void RotateArray(boolean clockwise, Color matrix[]);
     void displayOff();
     void displayMatrix(int index, Color c);
     void displayMatrix(int index, Color c[]);
