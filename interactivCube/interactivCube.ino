@@ -64,7 +64,6 @@ void setup() {
     // init gyro
     modeMng.initGyro();
     Serial.println(modeMng.isGyroConnected() ? "MPU6050 connection successful" : "MPU6050 connection failed");
-    timer0 = millis(); // clear the timer at the end of startup
 
     setTime(17,45,19,2,9,15);
 }
@@ -75,9 +74,9 @@ void loop() {
   
   passed = millis()-timer0;
   //Serial.println(timer0);
+  //executes our code every interval (in milliseconds)
   if (passed > interval) {
     timer0 = millis();
-    // TODO: nur alle 500 ms aufrufen
     mode = modeMng.getCurrentMode();
     //Serial.println(modeMng.getAccelX());
     
