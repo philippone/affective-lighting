@@ -61,6 +61,7 @@ void LedController::displayPattern(Color matrix[]) {
 */
 void LedController::displayOff() {
   displayColor(Color(0,0,0));
+  showMatrix();
 }
 
 /**
@@ -120,7 +121,8 @@ Color* LedController::getCurrentPixelMatrix(int index) {
 
   int j = index * matrixPinCount * 3;
   for (int i = 0; i < matrixPinCount; i++) {
-    matrix[i] = Color(array[j++], array[j++], array[j++]);
+    matrix[i] = Color(array[j+1], array[j], array[j+2]);
+    j+=3;
   }
       
   return matrix;  

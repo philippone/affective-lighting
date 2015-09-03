@@ -18,6 +18,7 @@ class ClockMode {
     Color c1 = Color(0,255,0);
     Color ledOff = Color(0,0,0);
     //byte *indicesToSet;
+    void rotate(int index, int rotations);
 
   public:
     ClockMode(LedController* contr, Model* m);
