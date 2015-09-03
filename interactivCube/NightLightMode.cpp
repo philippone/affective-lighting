@@ -7,7 +7,6 @@ NightLightMode::NightLightMode(int p, LedController* ledCntr, Model* m) {
   
 }
 
-
 void NightLightMode::execute() {
 
     int bla = 24; 
@@ -25,7 +24,7 @@ void NightLightMode::execute() {
     // simply map values to percent and regulate leds
     float perc = 1024.0 / 100.0 ;
     float brightness_perc = brightness / perc;
-    int monoC = (int) (brightness_perc * bla);
+    int monoC = (int) (brightness_perc * bla * 0.01);
     Color c = Color(monoC, monoC, monoC);
 
     ledController->displayColor(c);

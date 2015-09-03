@@ -72,7 +72,10 @@ ClockMode::ClockMode(LedController* contr, Model* m) {
     break;
     }
 
-    ledController->getCurrentPixelMatrix(0);
+    Color* tmpM = ledController->getCurrentPixelMatrix(2);
+    ledController->RotateDisplay(1, tmpM);
+
+    ledController->displayMatrix(2, tmpM );
 /*
     Adafruit_NeoPixel* pixels = ledController->getDisplay();
     uint8_t* array = pixels->getPixels();

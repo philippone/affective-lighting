@@ -67,7 +67,7 @@ void setup() {
     modeMng.initGyro();
     Serial.println(modeMng.isGyroConnected() ? "MPU6050 connection successful" : "MPU6050 connection failed");
 
-    setTime(17,45,19,2,9,15);
+    setTime(3,45,19,2,9,15);
 
     //TODO: set which clock design is used
 }

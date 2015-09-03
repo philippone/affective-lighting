@@ -127,7 +127,59 @@ Color* LedController::getCurrentPixelMatrix(int index) {
 }
 
 // TODO
-void LedController::RotateDisplay(int index, int rotationCount) {
+void LedController::RotateDisplay(int rotationCount, Color matrix[]) {
+
+  boolean isClockWise = rotationCount >= 0;
+
+  // if counterclockwise multiply -1
+  if(!isClockWise){
+    rotationCount *= -1;
+  }
+  
+  for(int k = 0; k < rotationCount; k++){
+    
+     RotateArray(isClockWise, matrix); 
+    
+  } 
+
+}
+
+void LedController::RotateArray(boolean clockwise, Color matrix[]){
+  
+  int column_width = 8;
+  int base_value = column_width * (column_width - 1);
+
+  Color* rotated_matrix = new Color[matrixPinCount];
+  
+  for(int i = 0; i < matrixPinCount; i++){
+
+      int new_index = 0;
+
+       // formula depending on direction
+       if(clockwise){
+
+          // 7*w + (i/w) - (i%w) * w
+          new_index = base_value + ((int) i / column_width) - ((i % column_width) * column_width);
+        
+       } else {
+
+          // 7 - (i/w) + (i%w) * w;
+          new_index = (column_width - 1) - ((int) i / column_width) + ((i % column_width) * column_width);
+          
+       }
+  
+      rotated_matrix[i] = matrix[new_index];
+        
+  }
+
+  for(int i = 0; i < matrixPinCount; i++){
+
+    matrix[i] = rotated_matrix[i];
+  
+  }
+
+  free(rotated_matrix);
+
 }
 
 
