@@ -49,7 +49,7 @@ unsigned long timer0;
 #define interval 1000
 // the interval in mS 
 int passed;
-byte clockDesign = 1;
+byte clockDesign = 3;
 
 
 void setup() {
@@ -67,7 +67,7 @@ void setup() {
     modeMng.initGyro();
     Serial.println(modeMng.isGyroConnected() ? "MPU6050 connection successful" : "MPU6050 connection failed");
 
-    setTime(9,45,19,2,9,15);
+    setTime(3,15,19,2,9,15);
 
     //TODO: set which clock design is used
 }

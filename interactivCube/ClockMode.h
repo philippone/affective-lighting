@@ -22,13 +22,17 @@ class ClockMode {
 
   public:
     ClockMode(LedController* contr, Model* m);
+
+    void execute(byte clockDesign);
+
+    //hours
     void setHours1(byte startIndex, byte number, byte ledPanelIndex, Color cHour);
+    void setHoursClock3(byte hours, byte ledPanelIndex, Color cHour);
     
     //minutes have to be between 0-59
     void setMinutesClock1(byte minutes, byte  ledPanelIndex, Color cMinutes, Color cMinutesDark);
     void setMinutesClock2(byte minutes, byte  ledPanelIndex, Color cMinutes, Color cMinutesDark);
-    void execute(byte clockDesign);
-
+    void setMinutesClock3(byte minutes, byte  ledPanelIndex, Color cMinutes, Color cMinutesDark);
 };
 
 
