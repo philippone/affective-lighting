@@ -22,18 +22,18 @@
 #include "NightLightMode.h";
 
 ModeManager modeMng;
-LedController ledController(128, 6);
+LedController ledController(384, 6);
 Model model;
 MsgHandler msgHandler(&model);
 ClockMode clockMode(&ledController, &model);
 NightLightMode nightLightMode(3, &ledController, &model);
 
 
-Color c1 = Color(0,255,0);
+
 Color c2 = Color(255,0,0);
 Color c3 = Color(0,0,255);
 Color c4 = Color(255, 0, 255);
-Color mode1[64] ={
+/*Color mode1[64] ={
   c1,c1,c1,c3,c3,c1,c1,c1,
   c1,c3,c1,c1,c1,c1,c3,c1,
   c1,c1,c1,c1,c2,c1,c1,c1,
@@ -42,13 +42,15 @@ Color mode1[64] ={
   c1,c1,c1,c1,c2,c1,c1,c1,
   c1,c2,c1,c1,c1,c1,c3,c1,
   c1,c1,c1,c3,c3,c1,c1,c1
-};
+};*/
 
 int mode;
 unsigned long timer0;
 #define interval 1000
 // the interval in mS 
 int passed;
+byte clockDesign = 1;
+
 
 void setup() {
   
@@ -66,6 +68,8 @@ void setup() {
     Serial.println(modeMng.isGyroConnected() ? "MPU6050 connection successful" : "MPU6050 connection failed");
 
     setTime(17,45,19,2,9,15);
+
+    //TODO: set which clock design is used
 }
 
 void loop() {
@@ -96,33 +100,34 @@ void loop() {
     
     // Temperatur
     if(mode == 0){
-      ledController.displayPattern(mode1);
+      //ledController.displayPattern(mode1);
+      
       }
     // Anwesenheit
     else if (mode == 1){
       //ledController.displayColor(Color(0,16,16));
-      ledController.displayPattern(mode1);
+      //ledController.displayPattern(mode1);
       }
     // Nachtlicht
     else if (mode == 2){
       //ledController.displayColor(Color(16,16,0));
-      ledController.displayPattern(mode1);
+      //ledController.displayPattern(mode1);
       nightLightMode.execute();
       }
     // Uhr
     else if (mode == 3){
       //ledController.displayColor(Color(16,0,16));
-      ledController.displayPattern(mode1);
+      clockMode.execute(clockDesign);
       }
     // Standby
     else if (mode == 4){
       //ledController.displayColor(Color(0,0,16));
-      ledController.displayPattern(mode1);
+      ledController.displayOff();
       }
     // Disco, Disco, Baby
     else if (mode == 5){
       //ledController.displayColor(Color(16,0,0));
-      ledController.displayPattern(mode1);
+      //ledController.displayPattern(mode1);
       }    
   }
 }

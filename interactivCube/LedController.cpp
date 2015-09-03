@@ -44,6 +44,7 @@ void LedController::displayColor(Color c) {
   displayPinsInColor(0, ledCount, c);
 }
 
+
 /**
 * set each pixel from the matrix to specific color
 */

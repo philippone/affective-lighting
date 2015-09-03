@@ -4,6 +4,7 @@
 #ifndef ClockMode_h
 #define ClockMode_h
 #include <Arduino.h>
+#include <Time.h>
 
 #include "ledController.h"
 #include "Model.h"
@@ -20,11 +21,12 @@ class ClockMode {
 
   public:
     ClockMode(LedController* contr, Model* m);
-    void setNumber(byte startIndex, byte number, byte ledPanelIndex);
+    void setHours1(byte startIndex, byte number, byte ledPanelIndex, Color cHour);
     
     //minutes have to be between 0-59
-    void setMinutesClock1(byte minutes, byte  ledPanelIndex);
-    void setMinutesClock2(byte minutes, byte  ledPanelIndex);
+    void setMinutesClock1(byte minutes, byte  ledPanelIndex, Color cMinutes, Color cMinutesDark);
+    void setMinutesClock2(byte minutes, byte  ledPanelIndex, Color cMinutes, Color cMinutesDark);
+    void execute(byte clockDesign);
 
 };
 
