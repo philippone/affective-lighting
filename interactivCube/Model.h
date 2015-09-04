@@ -42,7 +42,7 @@ class Model {
 
     // NightLightMode
     Color getNightLightColor();
-    void Model::setNightLightColor(Color c);
+    void setNightLightColor(Color c);
     int getNightLightFacettes();
     void setNightLightFacettes(int value);
 
