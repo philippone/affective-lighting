@@ -18,6 +18,10 @@ String TemperatureMode::execute() {
 
   Color c = getColorForTemp(celsius);
 
+
+  ledController->displayColor(c);
+  ledController->showMatrix();
+
   return "";
 }
 
@@ -27,8 +31,10 @@ String TemperatureMode::execute() {
 */
 Color TemperatureMode::getColorForTemp(float temp) {
   // 2 grad = 1 pixlel in hoehe
+
   
-  return Color(0,0,0);
+  
+  return Color(16,0,0);
 }
 
 
