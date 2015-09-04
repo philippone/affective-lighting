@@ -47,7 +47,7 @@ void ClockMode::execute(byte clockDesign) {
 
       //set hours on all 4 sides
       setHours1(startIndex, hourFormat12(), 0, clock1Hours);
-      setHours1(startIndex, hourFormat12(), 2, clock1Hours);
+      setHours1(startIndex, second(), 2, clock1Hours);
       setHours1(startIndex, hourFormat12(), 4, clock1Hours);
       setHours1(startIndex, hourFormat12(), 5, clock1Hours);
 
