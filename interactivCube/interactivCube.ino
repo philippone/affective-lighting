@@ -20,6 +20,7 @@
 #include "MsgHandler.h";
 #include "ClockMode.h";
 #include "NightLightMode.h";
+#include "TemperatureMode.h";
 
 ModeManager modeMng;
 LedController ledController(384, 6);
@@ -27,7 +28,7 @@ Model model;
 MsgHandler msgHandler(&model);
 ClockMode clockMode(&ledController, &model);
 NightLightMode nightLightMode(3, &ledController, &model);
-
+TemperatureMode temperatureMode(0, &ledController, &model);
 
 
 Color c2 = Color(255,0,0);
@@ -74,6 +75,7 @@ void setup() {
     //TODO: set which clock design is used
 }
 
+
 void loop() {
   // check if input is available
   msgHandler.checkInput();
@@ -97,13 +99,13 @@ void loop() {
     Serial.print(" az: ");
     Serial.print(modeMng.getAccelZ());
 
-
+  }
     //switch over all modes
     
     // Temperatur
     if(mode == 0){
       //ledController.displayPattern(mode1);
-      
+      temperatureMode.execute();
       }
     // Anwesenheit
     else if (mode == 1){
@@ -113,6 +115,7 @@ void loop() {
     // Nachtlicht
     else if (mode == 2){
       //ledController.displayColor(Color(16,16,0));
+      //ledController.showMatrix();
       //ledController.displayPattern(mode1);
       nightLightMode.execute();
       }
@@ -131,6 +134,6 @@ void loop() {
       //ledController.displayColor(Color(16,0,0));
       //ledController.displayPattern(mode1);
       }    
-  }
+  
 }
 
