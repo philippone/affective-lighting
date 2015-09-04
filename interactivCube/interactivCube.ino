@@ -51,7 +51,7 @@ unsigned long timer0;
 // the interval in mS 
 int passed;
 
-byte clockDesign = 2;
+byte clockDesign = 4;
 
 
 
