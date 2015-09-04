@@ -3,12 +3,12 @@
 //initialize with a value higher as the highest possible index
 byte indicesToSet[16];
 
-Color clock1Background = Color(12, 12, 12);
 Color clockMatrix[64];
-
+Color clock1Background = Color(12, 12, 12);
 Color clock1Hours = Color(0, 0, 20);
 Color clock1Minutes =  Color(0, 30, 0);
-Color clock1MinutesDark =  Color(0, 8, 0);
+Color clock1MinutesDark =  Color(0, 4, 0);
+Color clock2Background2 = Color(16, 14, 3);
 int startIndex = 0;
 
 
@@ -26,6 +26,9 @@ ClockMode::ClockMode(LedController* contr, Model* m) {
 
 void ClockMode::execute(byte clockDesign) {
 
+  int minutes = minute();
+  int hours = hourFormat12();
+
   //illuminate top + bottom side
   ledController->displayMatrix(1, clock1Background);
   ledController->displayMatrix(3, clock1Background);
@@ -40,26 +43,70 @@ void ClockMode::execute(byte clockDesign) {
       ledController->displayColor(clock1Background);
 
       //set start position of the hour
-      if(hourFormat12()<10)
-        startIndex = 2;
-      else
+      if(hours<10){
+        if (hours == 1){
+            startIndex = 3;
+          }else{
+            startIndex = 2;
+          }
+      }
+      else{
         startIndex = 0;
-
+      }
+      
       //set hours on all 4 sides
-      setHours1(startIndex, hourFormat12(), 0, clock1Hours);
-      setHours1(startIndex, hourFormat12(), 2, clock1Hours);
-      setHours1(startIndex, hourFormat12(), 4, clock1Hours);
-      setHours1(startIndex, hourFormat12(), 5, clock1Hours);
+      setHours1(startIndex, hours, 0, clock1Hours);
+      setHours1(startIndex, hours, 2, clock1Hours);
+      setHours1(startIndex, hours, 4, clock1Hours);
+      setHours1(startIndex, hours, 5, clock1Hours);
+
 
       //set minutes on all 4 sides
-      setMinutesClock1(minute(), 0, clock1Minutes, clock1MinutesDark);
-      setMinutesClock1(minute(), 2, clock1Minutes, clock1MinutesDark);
-      setMinutesClock1(minute(), 4, clock1Minutes, clock1MinutesDark);
-      setMinutesClock1(minute(), 5, clock1Minutes, clock1MinutesDark);
+      setMinutesClock1(minutes, 0, clock1Minutes, clock1MinutesDark);
+      setMinutesClock1(minutes, 2, clock1Minutes, clock1MinutesDark);
+      setMinutesClock1(minutes, 4, clock1Minutes, clock1MinutesDark);
+      setMinutesClock1(minutes, 5, clock1Minutes, clock1MinutesDark);
 
       break;
+
+    case 2:
+      //initialize array with background color
+      ledController->displayColor(clock1Background);
+      ledController->displayPinsInColor(40,64, clock2Background2);
+      ledController->displayPinsInColor((64*2)+40,(64*2)+64, clock2Background2);
+      ledController->displayPinsInColor((64*4)+40,(64*4)+64, clock2Background2);
+      ledController->displayPinsInColor((64*5)+40,(64*5)+64, clock2Background2);
+ 
+      //set start position of the hour
+      if(hours<10){
+        if (hours == 1){
+            startIndex = 6;
+          }else{
+            startIndex = 5;
+          }
+          setHours1(0, 0, 0, clock1Hours);
+          setHours1(0, 0, 2, clock1Hours);
+          setHours1(0, 0, 4, clock1Hours);
+          setHours1(0, 0, 5, clock1Hours);
+      }else{
+        startIndex = 2;
+      }
       
-     case 3:
+      //set hours on all 4 sides
+      setHours1(startIndex, hours, 0, clock1Hours);
+      setHours1(startIndex, hours, 2, clock1Hours);
+      setHours1(startIndex, hours, 4, clock1Hours);
+      setHours1(startIndex, hours, 5, clock1Hours);
+
+      //set minutes on all 4 sides
+      setMinutesClock2(minutes, 0, clock1Minutes, clock1MinutesDark);
+      setMinutesClock2(minutes, 2, clock1Minutes, clock1MinutesDark);
+      setMinutesClock2(minutes, 4, clock1Minutes, clock1MinutesDark);
+      setMinutesClock2(minutes, 5, clock1Minutes, clock1MinutesDark);
+      
+      break;
+      
+    case 3:
       //initialize array with background color
       ledController->displayColor(clock1Background);
 
@@ -74,7 +121,7 @@ void ClockMode::execute(byte clockDesign) {
       setMinutesClock3(minute(), 2, clock1Minutes, clock1MinutesDark);
       setMinutesClock3(minute(), 4, clock1Minutes, clock1MinutesDark);
       setMinutesClock3(minute(), 5, clock1Minutes, clock1MinutesDark);
-     break;
+      break;
   }
 
   rotate(2, 1);
@@ -315,14 +362,14 @@ void ClockMode::setHoursClock3(byte hours, byte ledPanelIndex, Color cHour){
 
 //minutes have to be between 0-59
 void ClockMode::setMinutesClock1(byte minutes, byte  ledPanelIndex, Color cMinutes, Color cMinutesDark) {
-  byte number = floor(minutes / 3.5f);
+  byte number = floor(minutes / 4);
 
-  int minuteArray[17] = {6, 7, 15, 23, 31, 39, 47, 55, 63, 62, 61, 60, 59, 58, 57, 56, 48};
+  int minuteArray[15] = {7, 15, 23, 31, 39, 47, 55, 63, 62, 61, 60, 59, 58, 57, 56};
   for (int i = 0; i <= number; i++) {
     ledController->displayPinOnMatrix(ledPanelIndex , minuteArray[i], cMinutes);
   }
 
-  for (int i = number + 1; i <= 17; i++) {
+  for (int i = number + 1; i < 15; i++) {
     ledController->displayPinOnMatrix(ledPanelIndex , minuteArray[i], cMinutesDark);
   }
 }
@@ -336,7 +383,7 @@ void ClockMode::setMinutesClock2(byte minutes, byte  ledPanelIndex, Color cMinut
     ledController->displayPinOnMatrix(ledPanelIndex , minuteArray[i], cMinutes);
   }
 
-  for (int i = number + 1; i <= 6; i++) {
+  for (int i = number + 1; i < 6; i++) {
     ledController->displayPinOnMatrix(ledPanelIndex , minuteArray[i], cMinutesDark);
   }
 }
