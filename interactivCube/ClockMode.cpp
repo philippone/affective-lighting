@@ -554,7 +554,7 @@ void ClockMode::setHours4(byte sIndex, byte hours, byte ledPanelIndex, Color c1,
     if (indicesToSet[i] < 64) {
       if(tempArr[i].equals(c1)){
         ledController->displayPinOnMatrix(ledPanelIndex, indicesToSet[i], c2);
-      }else{
+      }else if(tempArr[i].equals(c2)){
         ledController->displayPinOnMatrix(ledPanelIndex, indicesToSet[i], c1);
       }
     }
@@ -654,7 +654,7 @@ void ClockMode::setTimeClock4(byte hours, byte minutes, byte ledPanelIndex, Colo
   }else{
     sIndex = 1;
   }
-  setHours4(sIndex, hours, ledPanelIndex, c1, c2);
-  
+  //setHours4(sIndex+16, hours, ledPanelIndex, c1, c2);
+  setHours1(sIndex+8, hours, ledPanelIndex, cCorner);
   }
 

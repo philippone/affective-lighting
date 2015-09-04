@@ -54,7 +54,6 @@ int passed;
 byte clockDesign = 4;
 
 
-
 void setup() {
   
     Serial.begin(9600);
@@ -70,7 +69,7 @@ void setup() {
     modeMng.initGyro();
     Serial.println(modeMng.isGyroConnected() ? "MPU6050 connection successful" : "MPU6050 connection failed");
 
-    setTime(9,15,19,2,9,15);
+    setTime(9,30,19,2,9,15);
 
     //TODO: set which clock design is used
 }

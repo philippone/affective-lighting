@@ -14,3 +14,17 @@ Color::Color(){
   b = 0;  
 }
 
+
+
+boolean Color::equals(Color c) {
+  boolean e = true;
+  if (r != c.r)
+    e = false;
+  if (g != c.g)
+    e = false;
+  if (b != c.b)
+    e = false;
+
+  return e;
+}
+

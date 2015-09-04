@@ -15,6 +15,7 @@ class Color {
   Color();
   Color(byte r, byte g, byte b);
 
+  boolean equals(Color c);
 };
 
 #endif
