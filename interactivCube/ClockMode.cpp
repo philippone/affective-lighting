@@ -60,6 +60,7 @@ void ClockMode::execute(byte clockDesign) {
       setHours1(startIndex, hours, 4, clock1Hours);
       setHours1(startIndex, hours, 5, clock1Hours);
 
+
       //set minutes on all 4 sides
       setMinutesClock1(minutes, 0, clock1Minutes, clock1MinutesDark);
       setMinutesClock1(minutes, 2, clock1Minutes, clock1MinutesDark);

@@ -49,7 +49,9 @@ unsigned long timer0;
 #define interval 1000
 // the interval in mS 
 int passed;
+
 byte clockDesign = 2;
+
 
 
 void setup() {
