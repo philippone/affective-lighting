@@ -131,7 +131,6 @@ void ClockMode::execute(byte clockDesign) {
 
 
   ledController->showMatrix();
-
 }
 
 

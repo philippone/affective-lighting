@@ -45,7 +45,7 @@ Color c4 = Color(255, 0, 255);
   c1,c1,c1,c3,c3,c1,c1,c1
 };*/
 
-int mode;
+int mode = 3;
 unsigned long timer0;
 #define interval 1000
 // the interval in mS 
@@ -119,10 +119,11 @@ void loop() {
       //ledController.displayPattern(mode1);
       nightLightMode.execute();
       }
-    // Uhr
-    else if (mode == 3){
+   // Uhr
+   else if (mode == 3){
       //ledController.displayColor(Color(16,0,16));
       clockMode.execute(clockDesign);
+
       }
     // Standby
     else if (mode == 4){
@@ -134,6 +135,6 @@ void loop() {
       //ledController.displayColor(Color(16,0,0));
       //ledController.displayPattern(mode1);
       }    
-  
+
 }
 

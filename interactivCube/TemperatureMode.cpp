@@ -28,7 +28,7 @@ String TemperatureMode::execute() {
   //ledController->displayColor(c);
   ledController->displayColor(c);
 
-  ledController->getDisplay()->setBrightness(20);
+  //ledController->getDisplay()->setBrightness(20);
   
   ledController->showMatrix();
 
