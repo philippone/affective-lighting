@@ -10,10 +10,30 @@
 class Model {
 
   private:
-    long startTime;
-  
+    int maxBrightness = 32;
+
+    // ClockMode
+    byte clockDesign = 2;
+
+
+
+
+    // debug
+    boolean debugMode = false;
+
+
+    // debug variables
+    float debug_tmp = 14.0;
+
   public:
-    long getStartTime();
+    boolean isInDebug();
+    int getMaxBrightness();
+
+    // ClockMode
+    byte getClockDesign();
+
+    // debug methods
+    float getDebugTmp();
 
 };
 
