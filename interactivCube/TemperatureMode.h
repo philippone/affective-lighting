@@ -17,7 +17,7 @@ class TemperatureMode {
     LedController* ledController;
     Model* model;
     float getCelsius(int value);
-    Color getColorForTemp(float temp);
+    uint32_t getColorForTemp(float temp);
 
   public:
     TemperatureMode(int p, LedController* ledC, Model* m);

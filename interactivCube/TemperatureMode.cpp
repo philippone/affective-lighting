@@ -9,19 +9,30 @@ TemperatureMode::TemperatureMode(int p, LedController* ledC, Model* m) {
 }
 
 
+int i = 14;
 
 String TemperatureMode::execute() {
+
+  if (i > 30)
+  i = 14;
 
   int value = analogRead(pin);
 
   float celsius = getCelsius(value);
 
-  Color c = getColorForTemp(celsius);
+  //Color c = getColorForTemp(celsius);
 
+  uint32_t c = getColorForTemp(i++);
+  
 
+  //ledController->displayColor(c);
   ledController->displayColor(c);
+
+  ledController->getDisplay()->setBrightness(20);
+  
   ledController->showMatrix();
 
+  delay(1000);
   return "";
 }
 
@@ -29,12 +40,12 @@ String TemperatureMode::execute() {
 /**
 * return color for given temperature
 */
-Color TemperatureMode::getColorForTemp(float temp) {
+uint32_t TemperatureMode::getColorForTemp(float temp) {
   // 2 grad = 1 pixlel in hoehe
+  float t2 = temp - 15.0;
+  float v = 170- t2*11.3;
 
-  
-  
-  return Color(16,0,0);
+  return ledController->Wheel(v);
 }
 
 
