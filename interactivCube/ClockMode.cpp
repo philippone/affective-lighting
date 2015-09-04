@@ -402,3 +402,34 @@ void ClockMode::setMinutesClock3(byte minutes, byte ledPanelIndex, Color cMinute
   }
 }
 
+void ClockMode::setTimeClock4(byte hours, byte minutes, byte ledPanelIndex, Color c1, Color c2, Color cCorner){
+
+  //set minutes
+  if(minutes>0&&minutes<7){
+    ledController->displayPinsInColor((64*ledPanelIndex)+0,(64*ledPanelIndex)+ minutes + 2, c1);
+    ledController->displayPinsInColor((64*ledPanelIndex)+ minutes + 1,(64*ledPanelIndex)+ 64, c2);
+  }
+  if(minutes>6&&minutes<56){
+      ledController->displayPinsInColor((64*ledPanelIndex)+ 0,(64*ledPanelIndex)+ minutes + 3, c1);
+      ledController->displayPinsInColor((64*ledPanelIndex)+ minutes + 2,(64*ledPanelIndex)+ 64, c2);
+  }
+  if(minutes>55){
+      ledController->displayPinsInColor((64*ledPanelIndex)+ 0,(64*ledPanelIndex)+ minutes + 4, c1);
+      ledController->displayPinsInColor((64*ledPanelIndex)+ minutes + 3,(64*ledPanelIndex)+ 64, c2);
+  }
+
+
+  //set corners
+  ledController->displayPinOnMatrix(ledPanelIndex ,0 , cCorner);
+  ledController->displayPinOnMatrix(ledPanelIndex ,7 , cCorner);
+  ledController->displayPinOnMatrix(ledPanelIndex ,56 , cCorner);
+  ledController->displayPinOnMatrix(ledPanelIndex ,63 , cCorner);
+
+  //set hours
+  //Color* tempArr = ledController->getCurrentPixelMatrix(index);
+  
+
+
+  //set hours
+  }
+
