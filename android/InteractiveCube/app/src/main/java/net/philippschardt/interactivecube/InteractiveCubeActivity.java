@@ -20,7 +20,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import net.philippschardt.interactivecube.fragments.ClockFragment;
+import net.philippschardt.interactivecube.fragments.DiscoFragment;
+import net.philippschardt.interactivecube.fragments.NightLightFragment;
 import net.philippschardt.interactivecube.fragments.OnCommunicationListener;
+import net.philippschardt.interactivecube.fragments.PresenceFragment;
+import net.philippschardt.interactivecube.fragments.TemperatureFragment;
 import net.philippschardt.interactivecube.util.MySocketService;
 
 import java.util.Calendar;
@@ -71,12 +75,32 @@ public class InteractiveCubeActivity extends ActionBarActivity
         // update the main content by replacing fragments
         FragmentManager fragmentManager = getSupportFragmentManager();
         switch (position) {
-            case 1:
+            case 0:
                 fragmentManager.beginTransaction()
                         .replace(R.id.container, ClockFragment.newInstance())
                         .commit();
                 break;
 
+            case 1:
+                fragmentManager.beginTransaction()
+                        .replace(R.id.container, NightLightFragment.newInstance())
+                        .commit();
+                break;
+            case 2:
+                fragmentManager.beginTransaction()
+                        .replace(R.id.container, TemperatureFragment.newInstance())
+                        .commit();
+                break;
+            case 3:
+                fragmentManager.beginTransaction()
+                        .replace(R.id.container, DiscoFragment.newInstance())
+                        .commit();
+                break;
+            case 4:
+                fragmentManager.beginTransaction()
+                        .replace(R.id.container, PresenceFragment.newInstance())
+                        .commit();
+                break;
             default:
                 fragmentManager.beginTransaction()
                         .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
