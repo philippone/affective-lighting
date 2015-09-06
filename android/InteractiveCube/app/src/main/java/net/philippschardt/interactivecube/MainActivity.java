@@ -10,8 +10,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 import net.philippschardt.interactivecube.util.MySocketService;
@@ -31,7 +29,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
+/*
         debugText = (TextView) findViewById(R.id.text_view_input);
         Button sendButton = (Button) findViewById(R.id.button_send);
 
@@ -42,7 +40,7 @@ public class MainActivity extends Activity {
             }
         });
 
-
+*/
         Intent i = new Intent(this, MySocketService.class);
         i.putExtra(MySocketService.EXTRA_RESTART, true);
         startService(i);
@@ -173,4 +171,6 @@ public class MainActivity extends Activity {
         int month = currentLocalTime.getMonth();
         sendMsg("hc;"+hours+ ";"+ min + ";" + sec + ";" + day + ";" + month + ";" + year );
     }
+
+
 }

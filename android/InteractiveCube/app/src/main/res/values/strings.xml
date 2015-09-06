@@ -6,4 +6,26 @@
     <string name="arduino_bt_module_name">HC-05</string>
     <string name="arduino_bt_encoding">UTF-8</string>
     <string name="arduino_bt_module_adress">0C:8B:FD:E8:9B:3E</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_interactive_cube">InteractiveCubeActivity</string>
+
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_example">Example action</string>
+
+    <string name="mode_clock">Clock Mode</string>
+    <string name="mode_temperature">Temperature Mode</string>
+    <string name="mode_nightlight">NightLight Mode</string>
+    <string name="mode_disco">Disco Mode</string>
+    <string name="mode_presence">Presence Mode</string>
+
+
+
 </resources>
