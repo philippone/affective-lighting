@@ -19,6 +19,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import net.philippschardt.interactivecube.database.DBHelper;
 import net.philippschardt.interactivecube.fragments.ClockFragment;
 import net.philippschardt.interactivecube.fragments.DiscoFragment;
 import net.philippschardt.interactivecube.fragments.NightLightFragment;
@@ -46,6 +47,7 @@ public class InteractiveCubeActivity extends ActionBarActivity
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
      */
     private CharSequence mTitle;
+    private DBHelper mDbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +63,9 @@ public class InteractiveCubeActivity extends ActionBarActivity
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
 
+
+
+        mDbHelper = new DBHelper(this);
 
 
         // start socket service if not started
