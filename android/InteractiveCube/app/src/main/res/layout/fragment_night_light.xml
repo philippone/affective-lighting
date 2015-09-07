@@ -3,8 +3,21 @@
     android:layout_height="match_parent"
     tools:context="net.philippschardt.interactivecube.fragments.NightLightFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView android:layout_width="match_parent" android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="@string/primaryColor"
+            android:id="@+id/text_title_primary_color" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="pick color"
+            android:id="@+id/button_color_picker_night_light"
+            android:layout_gravity="left|top" />
+    </LinearLayout>
 
 </FrameLayout>

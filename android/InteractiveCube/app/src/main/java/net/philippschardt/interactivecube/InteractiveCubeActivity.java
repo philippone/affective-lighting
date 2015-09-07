@@ -26,6 +26,7 @@ import net.philippschardt.interactivecube.fragments.NightLightFragment;
 import net.philippschardt.interactivecube.fragments.OnCommunicationListener;
 import net.philippschardt.interactivecube.fragments.PresenceFragment;
 import net.philippschardt.interactivecube.fragments.TemperatureFragment;
+import net.philippschardt.interactivecube.util.ColorPickerDialog;
 import net.philippschardt.interactivecube.util.MySocketService;
 
 import java.util.Calendar;
@@ -33,11 +34,10 @@ import java.util.Date;
 import java.util.TimeZone;
 
 public class InteractiveCubeActivity extends ActionBarActivity
-        implements NavigationDrawerFragment.NavigationDrawerCallbacks, OnCommunicationListener {
+        implements NavigationDrawerFragment.NavigationDrawerCallbacks, OnCommunicationListener, ColorPickerDialog.OnColorPickerListener {
 
 
-
-    private  final String TAG = this.getClass().getName();
+    private final String TAG = this.getClass().getName();
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
      */
@@ -48,6 +48,7 @@ public class InteractiveCubeActivity extends ActionBarActivity
      */
     private CharSequence mTitle;
     private DBHelper mDbHelper;
+    private Fragment currentFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +63,6 @@ public class InteractiveCubeActivity extends ActionBarActivity
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
-
 
 
         mDbHelper = new DBHelper(this);
@@ -81,37 +81,29 @@ public class InteractiveCubeActivity extends ActionBarActivity
         FragmentManager fragmentManager = getSupportFragmentManager();
         switch (position) {
             case 0:
-                fragmentManager.beginTransaction()
-                        .replace(R.id.container, ClockFragment.newInstance())
-                        .commit();
+                currentFragment = ClockFragment.newInstance();
                 break;
 
             case 1:
-                fragmentManager.beginTransaction()
-                        .replace(R.id.container, NightLightFragment.newInstance())
-                        .commit();
+                currentFragment = NightLightFragment.newInstance();
                 break;
             case 2:
-                fragmentManager.beginTransaction()
-                        .replace(R.id.container, TemperatureFragment.newInstance())
-                        .commit();
+                currentFragment = TemperatureFragment.newInstance();
                 break;
             case 3:
-                fragmentManager.beginTransaction()
-                        .replace(R.id.container, DiscoFragment.newInstance())
-                        .commit();
+                currentFragment = DiscoFragment.newInstance();
                 break;
             case 4:
-                fragmentManager.beginTransaction()
-                        .replace(R.id.container, PresenceFragment.newInstance())
-                        .commit();
+                currentFragment = PresenceFragment.newInstance();
                 break;
             default:
-                fragmentManager.beginTransaction()
-                        .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
-                        .commit();
+                currentFragment = PlaceholderFragment.newInstance(position + 1);
                 break;
         }
+
+        fragmentManager.beginTransaction()
+                .replace(R.id.container, currentFragment)
+                .commit();
 
 
     }
@@ -173,6 +165,22 @@ public class InteractiveCubeActivity extends ActionBarActivity
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onCommitColor(int color) {
+        //if current fragment is a onColorPickerListener
+        ColorPickerDialog.OnColorPickerListener colorPickerListener = null;
+        try {
+            colorPickerListener = (ColorPickerDialog.OnColorPickerListener) currentFragment;
+        } catch (ClassCastException e) {
+            // The activity doesn't implement the interface, throw exception
+            throw new ClassCastException(this.toString()
+                    + " must implement OnColorPickerListener");
+        }
+
+        colorPickerListener.onCommitColor(color);
+
+    }
+
     /**
      * A placeholder fragment containing a simple view.
      */
@@ -212,8 +220,6 @@ public class InteractiveCubeActivity extends ActionBarActivity
                     getArguments().getInt(ARG_SECTION_NUMBER));
         }
     }
-
-
 
 
     private boolean isMyServiceRunning(Class<?> serviceClass) {
@@ -263,8 +269,6 @@ public class InteractiveCubeActivity extends ActionBarActivity
         // unregister Receiver
         unregisterReceiver(mMessageReceiver);
     }
-
-
 
 
     public boolean sendMsg(String msg) {
@@ -318,8 +322,6 @@ public class InteractiveCubeActivity extends ActionBarActivity
         int month = currentLocalTime.getMonth();
         sendMsg("hc;" + hours + ";" + min + ";" + sec + ";" + day + ";" + month + ";" + year);
     }
-
-
 
 
 }
