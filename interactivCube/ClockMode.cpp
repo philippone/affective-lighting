@@ -1,7 +1,7 @@
 #include "ClockMode.h"
 
 //initialize with a value higher as the highest possible index
-byte indicesToSet[16];
+byte indicesToSet[17];
 
 Color clockMatrix[64];
 Color clock1Background = Color(12, 12, 12);
@@ -13,9 +13,10 @@ Color clock4Corners =  Color(16, 0, 0);
 int startIndex = 0;
 
 
-ClockMode::ClockMode(LedController* contr, Model* m) {
+ClockMode::ClockMode(LedController* contr, Model* m, MsgHandler* msgH) {
   ledController = contr;
   model = m;
+  msgHandler = msgH;
 
   /*
   c1 =new Color(0,255,0);
@@ -549,16 +550,17 @@ void ClockMode::setHours4(byte sIndex, byte hours, byte ledPanelIndex, Color c1,
   }
 
   Color* tempArr = ledController->getCurrentPixelMatrix(ledPanelIndex);
-  
   for (int i = 0; i < 17; i++) {
-    if (indicesToSet[i] < 64) {
-      if(tempArr[i].equals(c1)){
+    if (indicesToSet[i] < 64) {      
+      if(tempArr[indicesToSet[i]].equals(c1)){   
         ledController->displayPinOnMatrix(ledPanelIndex, indicesToSet[i], c2);
-      }else if(tempArr[i].equals(c2)){
+      }else if(tempArr[indicesToSet[i]].equals(c2)){
+        Color cTemp =  Color(16, 0, 0);
         ledController->displayPinOnMatrix(ledPanelIndex, indicesToSet[i], c1);
       }
     }
   }
+  free(tempArr);
 }
 
 
@@ -622,7 +624,7 @@ void ClockMode::setMinutesClock3(byte minutes, byte ledPanelIndex, Color cMinute
 void ClockMode::setTimeClock4(byte hours, byte minutes, byte ledPanelIndex, Color c1, Color c2, Color cCorner){
 
   //set minutes
-  if(minutes>0&&minutes<7){
+  if(minutes>=0&&minutes<7){
     ledController->displayPinsInColor((64*ledPanelIndex)+0,(64*ledPanelIndex)+ minutes + 2, c1);
     ledController->displayPinsInColor((64*ledPanelIndex)+ minutes + 1,(64*ledPanelIndex)+ 64, c2);
   }
@@ -632,7 +634,7 @@ void ClockMode::setTimeClock4(byte hours, byte minutes, byte ledPanelIndex, Colo
   }
   if(minutes>55){
       ledController->displayPinsInColor((64*ledPanelIndex)+ 0,(64*ledPanelIndex)+ minutes + 4, c1);
-      ledController->displayPinsInColor((64*ledPanelIndex)+ minutes + 3,(64*ledPanelIndex)+ 64, c2);
+      ledController->displayPinsInColor((64*ledPanelIndex)+ minutes+ 3,(64*ledPanelIndex)+ 64, c2);
   }
 
 
@@ -642,6 +644,7 @@ void ClockMode::setTimeClock4(byte hours, byte minutes, byte ledPanelIndex, Colo
   ledController->displayPinOnMatrix(ledPanelIndex ,56 , cCorner);
   ledController->displayPinOnMatrix(ledPanelIndex ,63 , cCorner);
 
+  bool eleven = 0;
   //set hours
   byte sIndex;
   //set hours
@@ -652,9 +655,20 @@ void ClockMode::setTimeClock4(byte hours, byte minutes, byte ledPanelIndex, Colo
       sIndex = 2;
     }
   }else{
-    sIndex = 1;
+    sIndex = 2;
+    if(hours == 11){
+      eleven = 1;
+      }
   }
+  
   //setHours4(sIndex+16, hours, ledPanelIndex, c1, c2);
-  setHours1(sIndex+8, hours, ledPanelIndex, cCorner);
+  if(eleven){
+      setHours1(sIndex+16, 1, ledPanelIndex, cCorner);
+      setHours1(sIndex+16+3, 1, ledPanelIndex, cCorner);
+      eleven = 0;
+
+  }else{
+      setHours1(sIndex+16, hours, ledPanelIndex, cCorner);
+    }
   }
 
