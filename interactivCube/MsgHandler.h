@@ -26,6 +26,8 @@ class MsgHandler {
     
     void hanldeHandshakeClock(String message);
     void addDebugStream(Stream* debugStream);
+
+    void debugMsg(String msg);
 };
 
 

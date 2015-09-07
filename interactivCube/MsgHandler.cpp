@@ -133,3 +133,8 @@ void MsgHandler::sendMsg(String msg) {
   
 }
 
+
+void MsgHandler::debugMsg(String msg) {
+  serial->println("d;" + msg);
+}
+
