@@ -26,7 +26,7 @@ ModeManager modeMng;
 LedController ledController(384, 6);
 Model model;
 MsgHandler msgHandler(&model);
-ClockMode clockMode(&ledController, &model);
+ClockMode clockMode(&ledController, &model,&msgHandler);
 NightLightMode nightLightMode(3, &ledController, &model);
 TemperatureMode temperatureMode(0, &ledController, &model);
 

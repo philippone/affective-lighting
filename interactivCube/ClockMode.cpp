@@ -13,9 +13,10 @@ Color clock4Corners =  Color(16, 0, 0);
 int startIndex = 0;
 
 
-ClockMode::ClockMode(LedController* contr, Model* m) {
+ClockMode::ClockMode(LedController* contr, Model* m, MsgHandler* msgH) {
   ledController = contr;
   model = m;
+  msgHandler = msgH;
 
   /*
   c1 =new Color(0,255,0);
@@ -549,13 +550,15 @@ void ClockMode::setHours4(byte sIndex, byte hours, byte ledPanelIndex, Color c1,
   }
 
   Color* tempArr = ledController->getCurrentPixelMatrix(ledPanelIndex);
-  
+  Color cTemp =  Color(16, 0, 0);
+  Color cTemp2=  Color(16, 0, 16);
   for (int i = 0; i < 17; i++) {
     if (indicesToSet[i] < 64) {
-      if(tempArr[i].equals(c1)){
-        ledController->displayPinOnMatrix(ledPanelIndex, indicesToSet[i], c2);
-      }else if(tempArr[i].equals(c2)){
-        ledController->displayPinOnMatrix(ledPanelIndex, indicesToSet[i], c1);
+      if(tempArr[i].equals(c1)){   
+        ledController->displayPinOnMatrix(ledPanelIndex, indicesToSet[i], cTemp);
+      }else{// if(tempArr[i].equals(c2)){
+        Color cTemp =  Color(16, 0, 0);
+        ledController->displayPinOnMatrix(ledPanelIndex, indicesToSet[i], cTemp2);
       }
     }
   }
@@ -654,7 +657,7 @@ void ClockMode::setTimeClock4(byte hours, byte minutes, byte ledPanelIndex, Colo
   }else{
     sIndex = 1;
   }
-  //setHours4(sIndex+16, hours, ledPanelIndex, c1, c2);
-  setHours1(sIndex+8, hours, ledPanelIndex, cCorner);
+  setHours4(sIndex+16, hours, ledPanelIndex, c1, c2);
+  //setHours1(sIndex+8, hours, ledPanelIndex, cCorner);
   }
 
