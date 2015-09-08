@@ -1,3 +1,5 @@
+#include <FHT.h>
+
 /*
   Analog Input
  Demonstrates analog input by reading an analog sensor on analog pin 0 and
@@ -39,6 +41,11 @@ void setup() {
 void loop() {
   // read the value from the sensor:
   sensorValue = analogRead(sensorPin);
-  if (sensorValue < 1023)
-  Serial.println(sensorValue);
+  if (sensorValue < 1023){
+
+    Serial.println(sensorValue);
+    int inv_sensorValue = 1023 - sensorValue;
+    Serial.println(inv_sensorValue);
+
+  }
 }
