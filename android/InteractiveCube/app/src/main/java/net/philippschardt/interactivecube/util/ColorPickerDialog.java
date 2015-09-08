@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.larswerkman.holocolorpicker.ColorPicker;
+import com.larswerkman.holocolorpicker.SVBar;
 
 import net.philippschardt.interactivecube.R;
 
@@ -22,6 +23,14 @@ public class ColorPickerDialog extends DialogFragment {
 
     private final String TAG = getClass().getName();
     private ColorPicker picker;
+    private int initColor = 0;
+
+
+    private static final String initColorParam = "initColorparam";
+
+    public ColorPickerDialog() {
+
+    }
 
     public interface OnColorPickerListener {
         public void onCommitColor(int color);
@@ -29,6 +38,25 @@ public class ColorPickerDialog extends DialogFragment {
     }
 
 
+    public static ColorPickerDialog newInstance(int color) {
+
+        Bundle args = new Bundle();
+
+        ColorPickerDialog fragment = new ColorPickerDialog();
+        args.putInt(initColorParam, color);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            initColor = getArguments().getInt(initColorParam);
+
+        }
+    }
 
 
 
@@ -66,7 +94,19 @@ public class ColorPickerDialog extends DialogFragment {
                     }
                 });
 
-        picker  = (ColorPicker) v.findViewById(R.id.picker);
+        picker = (ColorPicker) v.findViewById(R.id.picker);
+        SVBar svBar = (SVBar) v.findViewById(R.id.svbar);
+        //OpacityBar opacityBar = (OpacityBar) v.findViewById(R.id.opacitybar);
+        //SaturationBar saturationBar = (SaturationBar) v.findViewById(R.id.saturationbar);
+        //ValueBar valueBar = (ValueBar) v.findViewById(R.id.valuebar);
+
+        picker.addSVBar(svBar);
+        //picker.addOpacityBar(opacityBar);
+        //picker.addSaturationBar(saturationBar);
+        //picker.addValueBar(valueBar);
+
+        picker.setColor(initColor);
+        //svBar.setColor(initColor);
         
 
         return builder.create();

@@ -28,6 +28,8 @@ public class NightLightFragment extends Fragment implements ColorPickerDialog.On
     private OnCommunicationListener mListener;
     private Button colorPickerButton;
 
+    private int primaryColor = Color.YELLOW;
+
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -49,7 +51,7 @@ public class NightLightFragment extends Fragment implements ColorPickerDialog.On
 
     public void showColorPickerDialog() {
         // Create an instance of the dialog fragment and show it
-        ColorPickerDialog dialog = new ColorPickerDialog();
+        ColorPickerDialog dialog = ColorPickerDialog.newInstance(primaryColor);
         dialog.show(getFragmentManager(), "ColorPickerDialog");
 
         Log.d(TAG, "display color picker dialog");
@@ -73,7 +75,7 @@ public class NightLightFragment extends Fragment implements ColorPickerDialog.On
 
         colorPickerButton = (Button) v.findViewById(R.id.button_color_picker_night_light);
 
-        colorPickerButton.setTextColor(255);
+        colorPickerButton.setBackgroundColor(primaryColor);
 
         colorPickerButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,6 +111,7 @@ public class NightLightFragment extends Fragment implements ColorPickerDialog.On
 
         Log.d(TAG, "picked Color " + Color.red(color) + " " + Color.green(color) + " " + Color.blue(color));
 
-        colorPickerButton.setTextColor(color);
+        colorPickerButton.setBackgroundColor(color);
+        primaryColor = color;
     }
 }

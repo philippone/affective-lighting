@@ -5,19 +5,41 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_margin="@dimen/activity_vertical_margin">
+
+
 
         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
             android:text="@string/primaryColor"
-            android:id="@+id/text_title_primary_color" />
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:id="@+id/text_title_primary_color"
+            android:gravity="center_horizontal" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center">
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="70dp"
             android:layout_height="wrap_content"
-            android:text="pick color"
             android:id="@+id/button_color_picker_night_light"
-            android:layout_gravity="left|top" />
+            android:gravity="center_vertical"
+            android:layout_marginRight="20dp"
+            android:layout_gravity="center"
+            android:shadowColor="#ffffff"
+            android:singleLine="true"
+            android:bottomRightRadius="10dp"
+            android:bottomLeftRadius="10dp"
+            android:topLeftRadius="10dp"
+            android:topRightRadius="10dp"
+            />
+
+        </LinearLayout>
     </LinearLayout>
 
 </FrameLayout>
