@@ -33,7 +33,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(Contract.Settings.SQL_CREATE_ENTRIES);
+        //db.execSQL(Contract.Settings.SQL_CREATE_ENTRIES);
         db.execSQL(Contract.PresenceMode.SQL_CREATE_ENTRIES);
 
     }

@@ -1,7 +1,8 @@
 package net.philippschardt.interactivecube.fragments;
 
 import android.app.Activity;
-import android.content.Intent;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -12,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import net.philippschardt.interactivecube.R;
+import net.philippschardt.interactivecube.database.SharedPrefConfig;
 import net.philippschardt.interactivecube.util.ColorPickerDialog;
 import net.philippschardt.interactivecube.util.Message;
 
@@ -44,12 +46,6 @@ public class NightLightFragment extends Fragment implements ColorPickerDialog.On
     }
 
 
-    @Override
-    public void startActivityForResult(Intent intent, int requestCode) {
-        Log.d(TAG, "startActivityForResult");
-        super.startActivityForResult(intent, requestCode);
-    }
-
     public void showColorPickerDialog() {
         // Create an instance of the dialog fragment and show it
         ColorPickerDialog dialog = ColorPickerDialog.newInstance(primaryColor);
@@ -66,6 +62,9 @@ public class NightLightFragment extends Fragment implements ColorPickerDialog.On
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // get saved Value
+        primaryColor = getSavedColorValue();
     }
 
     @Override
@@ -76,6 +75,7 @@ public class NightLightFragment extends Fragment implements ColorPickerDialog.On
 
         colorPickerButton = (Button) v.findViewById(R.id.button_color_picker_night_light);
 
+        // set saved Value
         colorPickerButton.setBackgroundColor(primaryColor);
 
         colorPickerButton.setOnClickListener(new View.OnClickListener() {
@@ -115,7 +115,24 @@ public class NightLightFragment extends Fragment implements ColorPickerDialog.On
         colorPickerButton.setBackgroundColor(color);
         primaryColor = color;
 
+        // save color
+        saveTempPrimarycolor(color);
+
         // send primary color to arduino
-        mListener.sendMsg(Message.TempPrimaryColor(Color.red(color), Color.green(color), Color.blue(color)));
+        mListener.sendMsg(Message.NightLightPrimaryColor(Color.red(color), Color.green(color), Color.blue(color)));
     }
+
+
+    private int getSavedColorValue() {
+        SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
+        return sharedPref.getInt(SharedPrefConfig.TEMPERATURE_PRIMARY_COLOR, Color.WHITE);
+    }
+
+    private void saveTempPrimarycolor(int color) {
+        SharedPreferences sharedPref = getActivity().getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putInt(SharedPrefConfig.TEMPERATURE_PRIMARY_COLOR, color);
+        editor.commit();
+    }
+
 }

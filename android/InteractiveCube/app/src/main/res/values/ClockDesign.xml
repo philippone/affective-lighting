@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="clock_design_array">
+        <item>Clock 1</item>
+        <item>Clock 2</item>
+        <item>Clock 3</item>
+        <item>Clock 4</item>
+        <item>All together</item>
+
+    </string-array>
+</resources>

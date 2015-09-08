@@ -6,4 +6,7 @@ package net.philippschardt.interactivecube.fragments;
 public interface OnCommunicationListener {
 
     public boolean sendMsg(String msg);
+
+
+
 }

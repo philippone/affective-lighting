@@ -7,8 +7,11 @@ public class Message {
 
 
 
-    public static String TempPrimaryColor(int r, int g, int b) {
-        return "tm_c1;"+r+";"+g+";"+b+";";
+    public static String NightLightPrimaryColor(int r, int g, int b) {
+        return "nlm_c1;"+r+";"+g+";"+b+";";
     }
 
+    public static String ClockSetMode(int position) {
+        return "cm_d;"+position + ";";
+    }
 }

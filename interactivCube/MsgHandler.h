@@ -16,7 +16,8 @@ class MsgHandler {
     Stream* debug;
     void handle(String message);
     void hanldeHandshakeClock(String message);
-    void handleTempPrimColor(String message);
+    void handleNightLightPrimColor(String message);
+    void handleClockDesign(String message);
     String getValue(String data, char separator, int index);
   
   public:
