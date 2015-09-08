@@ -9,19 +9,21 @@
 #include "ledController.h"
 #include "Model.h"
 #include "Color.h"
+#include "MsgHandler.h"
 
 class ClockMode {
 
   private:
     LedController* ledController;
     Model* model;
+    MsgHandler* msgHandler;
     Color c1 = Color(0,255,0);
     Color ledOff = Color(0,0,0);
     //byte *indicesToSet;
     void rotate(int index, int rotations);
 
   public:
-    ClockMode(LedController* contr, Model* m);
+    ClockMode(LedController* contr, Model* m,  MsgHandler* msgHandler);
 
     void execute(byte clockDesign);
 
@@ -35,6 +37,8 @@ class ClockMode {
     void setMinutesClock2(byte minutes, byte  ledPanelIndex, Color cMinutes, Color cMinutesDark);
     void setMinutesClock3(byte minutes, byte  ledPanelIndex, Color cMinutes, Color cMinutesDark);
     void setTimeClock4(byte hours, byte minutes, byte ledPanelIndex, Color c1, Color c2, Color cCorner);
+    void setTimeClock5(byte hours, byte minutes, byte seconds, byte ledPanelIndex, Color cHour, Color cMinutes, Color cSeconds);
+    void setBinaryClock5(int startIndex, int size, byte hours, byte ledPanelIndex, Color cHour);
 };
 
 

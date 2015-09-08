@@ -25,7 +25,8 @@
     <string name="mode_nightlight">NightLight Mode</string>
     <string name="mode_disco">Disco Mode</string>
     <string name="mode_presence">Presence Mode</string>
-
+    <string name="primaryColor">Primary Color</string>
+    <string name="cancel">Cancel</string>
 
 
 </resources>

@@ -3,8 +3,27 @@
     android:layout_height="match_parent"
     tools:context="net.philippschardt.interactivecube.fragments.TemperatureFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView android:layout_width="match_parent" android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    <RadioButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sensor"
+        android:id="@+id/radioButton_sensor"
+        android:layout_gravity="left|top" />
+
+    <RadioButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Location"
+        android:id="@+id/radioButton_location"
+        android:layout_gravity="left|top" />
+
+
+
+    </LinearLayout>
 </FrameLayout>
