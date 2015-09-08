@@ -24,12 +24,14 @@ void Model::setClockDesign(byte design) {
 
 /**NightLightMode stuff begin**/
 
-Color Model::getNightLightColor() {
+Color* Model::getNightLightColor() {
   return nightLight_baseColor;
 }
 
 void Model::setNightLightColor(Color c) {
- nightLight_baseColor = c;
+ nightLight_baseColor->r = c.r;
+ nightLight_baseColor->g = c.g;
+ nightLight_baseColor->b = c.b;
 }
 
 int Model::getNightLightFacettes() {
