@@ -685,33 +685,33 @@ void ClockMode::setTimeClock4(byte hours, byte minutes, byte ledPanelIndex, Colo
 
 //methods binary clock
 void ClockMode::setTimeClock5(byte hours, byte minutes, byte seconds, byte ledPanelIndex, Color cHour, Color cMinutes, Color cSeconds){
-  setHourClock5(hours, ledPanelIndex, cHour);
+  setBinaryClock5(9, 5, hours, ledPanelIndex, cHour);
+  setBinaryClock5(25, 6, minutes, ledPanelIndex, cHour);
+  setBinaryClock5(49, 6, seconds, ledPanelIndex, cHour);
 }
 
-void ClockMode::setHourClock5(byte hours, byte ledPanelIndex, Color cHour){
-  int binary[5];
+void ClockMode::setBinaryClock5(int startIndex, int size, byte number, byte ledPanelIndex, Color cHour){
+  int binary[size];    
 
-  int helpDiv = floor(hours / 2.0f);
-  int helpMod = hours % 2;
-  int i=4;
+  int helpDiv = floor(number / 2.0f);
+  int helpMod = number % 2;
+
+  
+  int i=size-1;
 
   binary[i] = helpMod;
   
   while(helpDiv != 0){
-
     helpMod = helpDiv % 2;
     helpDiv = floor(helpDiv / 2.0f);
     i--;
     binary[i] = helpMod;
   }
   
-
-  for(int i=0; i<5; i++){
+  for(int i=0; i<size; i++){
     if(binary[i]==1)
-        ledController->displayPinOnMatrix(ledPanelIndex, 9+i, cHour);
+        ledController->displayPinOnMatrix(ledPanelIndex, startIndex+i, cHour);
     else
-        ledController->displayPinOnMatrix(ledPanelIndex, 9+i, clock5HoursDark);
+        ledController->displayPinOnMatrix(ledPanelIndex, startIndex+i, clock5HoursDark);
   }
 }
-
-
