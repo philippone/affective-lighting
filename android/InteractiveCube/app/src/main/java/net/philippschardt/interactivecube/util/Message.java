@@ -14,4 +14,21 @@ public class Message {
     public static String ClockSetMode(int position) {
         return "cm_d;"+position + ";";
     }
+
+
+    /**
+     * add person on arduino
+     * */
+    public static String setPresencePresent(long id, int color) {
+        return "pm_p;"+ id + ";" + color + ";";
+    }
+
+    /**
+     * remove person on arduino
+     * */
+    public static String setPresenceAbsent(long id) {
+        return "pm_a;"+ id + ";";
+    }
+
+
 }

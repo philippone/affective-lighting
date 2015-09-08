@@ -283,6 +283,11 @@ public class InteractiveCubeActivity extends ActionBarActivity
         return false;
     }
 
+    @Override
+    public DBHelper getDBHelper() {
+        return mDbHelper;
+    }
+
 
     /**
      * handle inputs from arduino/lamp
