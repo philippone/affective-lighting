@@ -1,5 +1,7 @@
 package net.philippschardt.interactivecube.util;
 
+import android.graphics.Color;
+
 /**
  * Created by philipp on 07.09.15.
  */
@@ -20,7 +22,7 @@ public class Message {
      * add person on arduino
      * */
     public static String setPresencePresent(long id, int color) {
-        return "pm_p;"+ id + ";" + color + ";";
+        return "pm_p;"+ id + ";" + Color.red(color) + ";" + Color.green(color) + ";" + Color.blue(color) + ";";
     }
 
     /**
