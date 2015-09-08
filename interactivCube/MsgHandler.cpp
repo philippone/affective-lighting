@@ -74,7 +74,7 @@ vector<string> MsgHandler::explode(const string& str, const char& ch) {
   */
   
 void MsgHandler::hanldeHandshakeClock(String message) {
-  int h = (getValue(message, ';', 0)).toInt();
+  int h = getValue(message, ';', 0).toInt();
   int mi = getValue(message, ';', 1).toInt();
   int sec = getValue(message, ';', 2).toInt();
   int da = getValue(message, ';', 3).toInt();
@@ -84,6 +84,20 @@ void MsgHandler::hanldeHandshakeClock(String message) {
   
   //set time
   setTime(h,mi,sec,da,mo,ye);
+}
+
+/**
+* set incomming primary color in model 
+* message: "tm_c1;r;g;b";
+* input "r;g;b;"
+*/
+void MsgHandler::handleTempPrimColor(String message) {
+  int r = getValue(message, ';', 0).toInt();
+  int g = getValue(message, ';', 1).toInt();
+  int b = getValue(message, ';', 2).toInt();
+
+  model->setNightLightColor(Color(r,g,b));
+  
 }
   
 String MsgHandler::getValue(String data, char separator, int index) {

@@ -13,6 +13,7 @@ import android.widget.Button;
 
 import net.philippschardt.interactivecube.R;
 import net.philippschardt.interactivecube.util.ColorPickerDialog;
+import net.philippschardt.interactivecube.util.Message;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -113,5 +114,8 @@ public class NightLightFragment extends Fragment implements ColorPickerDialog.On
 
         colorPickerButton.setBackgroundColor(color);
         primaryColor = color;
+
+        // send primary color to arduino
+        mListener.sendMsg(Message.TempPrimaryColor(Color.red(color), Color.green(color), Color.blue(color)));
     }
 }
