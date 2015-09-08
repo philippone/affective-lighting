@@ -21,6 +21,7 @@
 #include "ClockMode.h";
 #include "NightLightMode.h";
 #include "TemperatureMode.h";
+#include "DiscoMode.h"
 
 ModeManager modeMng;
 LedController ledController(384, 6);
@@ -29,6 +30,7 @@ MsgHandler msgHandler(&model);
 ClockMode clockMode(&ledController, &model,&msgHandler);
 NightLightMode nightLightMode(3, &ledController, &model);
 TemperatureMode temperatureMode(0, &ledController, &model);
+DiscoMode discoMode(2, &ledController, &model);
 
 
 Color c2 = Color(255,0,0);
@@ -51,7 +53,7 @@ unsigned long timer0;
 // the interval in mS 
 int passed;
 
-byte clockDesign = 5;
+byte clockDesign = 6;
 
 
 void setup() {
@@ -133,6 +135,7 @@ void loop() {
     else if (mode == 5){
       //ledController.displayColor(Color(16,0,0));
       //ledController.displayPattern(mode1);
+      discoMode.execute();
       }    
 
 }

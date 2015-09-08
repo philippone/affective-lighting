@@ -141,7 +141,74 @@ void ClockMode::execute(byte clockDesign) {
     case 5:
       ledController->displayColor(clock1Background);
       setTimeClock5(hours, minutes, seconds, 0, clock1Hours, clock1Minutes, clock4Corners);
-    break;
+      break;
+
+    case 6:   
+  /*
+  * set side 0 with clockDesign 1 
+  */
+    
+    //initialize array with background color
+      for (int i = 0; i < 16; i++) {
+        clockMatrix[i] = clock1Background;
+      }
+      ledController->displayColor(clock1Background);
+
+      //set start position of the hour
+      if(hours<10){
+        if (hours == 1){
+            startIndex = 3;
+          }else{
+            startIndex = 2;
+          }
+      }
+      else{
+        startIndex = 0;
+      }
+      
+      //set hours on all 4 sides
+      setHours1(startIndex, hours, 0, clock1Hours);
+
+      //set minutes on all 4 sides
+      setMinutesClock1(minutes, 0, clock1Minutes, clock1MinutesDark);
+
+  /*
+  * set side 2 with clockDesign 2 
+  */
+  
+   //initialize array with background color
+      ledController->displayColor(clock1Background);
+      ledController->displayPinsInColor((64*2)+40,(64*2)+64, clock2Background2);
+ 
+      //set start position of the hour
+      if(hours<10){
+        if (hours == 1){
+            startIndex = 6;
+          }else{
+            startIndex = 5;
+          }
+          setHours1(0, 0, 2, clock1Hours);
+      }else{
+        startIndex = 2;
+      }
+      
+      //set hours on all 4 sides
+      setHours1(startIndex, hours, 2, clock1Hours);
+
+      //set minutes on all 4 sides
+      setMinutesClock2(minutes, 2, clock1Minutes, clock1MinutesDark);
+
+  /*
+  * set side 4 with clockDesign 4 
+  */
+      setTimeClock4(hours, minutes, 4, clock1Hours, clock1Minutes, clock4Corners);
+      
+  /*
+  * set side 5 with clockDesign 5 
+  */
+      //ledController->displayColor(clock1Background);
+      setTimeClock5(hours, minutes, seconds, 5, clock1Hours, clock1Minutes, clock4Corners);
+      break;
   }
 
   rotate(2, 1);
