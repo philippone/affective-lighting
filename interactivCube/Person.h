@@ -12,6 +12,7 @@ class Person {
   Color color;
      
   public:
+  Person();
   Person(long pId, Color c);
 
   long getId();

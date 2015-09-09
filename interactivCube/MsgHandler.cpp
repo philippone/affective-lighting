@@ -185,10 +185,15 @@ void MsgHandler::sendMsg(String msg) {
 
 void MsgHandler::debugMsg(String msg) {
   serial->println("d;" + msg);
+  debug->println("d;" + msg);
 }
 
 
 Stream* MsgHandler::getSerial() {
   return serial;
+}
+
+Stream* MsgHandler::getDebugStream() {
+  return debug;
 }
 

@@ -6,6 +6,7 @@
 #include <Arduino.h>
 
 #include "Color.h"
+#include "Person.h"
 
 
 class Model {
@@ -22,7 +23,7 @@ class Model {
 
 
     // PresenceMode
-    
+    //Person persons[9];
 
     // debug
     boolean debugMode = false;
