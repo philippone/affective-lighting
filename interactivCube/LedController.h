@@ -17,6 +17,8 @@ class LedController {
     uint16_t ledCount;
     uint8_t ledPin;
     Adafruit_NeoPixel* pixels;
+
+    float maxBrightness = 8;
     
     
   
@@ -41,6 +43,9 @@ class LedController {
 
     Adafruit_NeoPixel* getDisplay();
     uint32_t Wheel(byte WheelPos);
+
+
+    void scaleColor(Color* c);
 
 };
 

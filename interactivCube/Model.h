@@ -18,7 +18,7 @@ class Model {
     byte clockDesign = 2;
 
     // NightLight Mode
-    Color* nightLight_baseColor = new Color(16,0,0);
+    Color* nightLight_baseColor = new Color(32,0,0);
     int nightLight_facettes = 32;
 
 
