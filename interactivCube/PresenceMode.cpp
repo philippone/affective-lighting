@@ -5,6 +5,7 @@ PresenceMode::PresenceMode(LedController* contr, Model* m) {
   model = m;
 }
 
+int lastK = 0;
 
 void PresenceMode::execute(){
 
@@ -13,10 +14,7 @@ void PresenceMode::execute(){
   int startIndices[] = {27, 0 , 54, 6, 48, 30, 24, 3, 51};
 
   Person* persons = model->getPersonArray();
-
-  persons[2].setId(2L);
-  persons[2].setColor(Color(16, 0, 16));
-
+  
   int k = 0;
   for(int i = 0; i < 9 ; i++){
 
@@ -25,7 +23,13 @@ void PresenceMode::execute(){
     }
   }
 
-  int startIndex = ((k+1) % 2);
+  if(k != lastK){
+
+    lastK = k;
+
+    ledController->displayOff();
+    
+    int startIndex = ((k+1) % 2);
 
   k = 0;
   for(int i = 0; i < 9 ; i++){
@@ -37,7 +41,7 @@ void PresenceMode::execute(){
 
       for(int j = 0; j < 4 ; j++){
 
-        ledController->displayPinOnMatrix(1, led_positions[j], Color(16, 0, 16));  
+        ledController->displayPinOnMatrix(1, led_positions[j], persons[i].getColor());  
       
       }
       
@@ -46,5 +50,7 @@ void PresenceMode::execute(){
   }
 
   ledController->showMatrix();
+  }
+
 }  
 

@@ -24,21 +24,22 @@ class ClockMode {
 
   public:
     ClockMode(LedController* contr, Model* m,  MsgHandler* msgHandler);
-
     void execute(byte clockDesign);
 
-    //hours
+    //Design 1
     void setHours1(byte startIndex, byte number, byte ledPanelIndex, Color cHour);
-    void setHoursClock3(byte hours, byte ledPanelIndex, Color cHour);
-    void setHours4(byte sIndex, byte hours, byte ledPanelIndex, Color c1, Color c2); 
-    
-    //minutes have to be between 0-59
     void setMinutesClock1(byte minutes, byte  ledPanelIndex, Color cMinutes, Color cMinutesDark);
-    void setMinutesClock2(byte minutes, byte  ledPanelIndex, Color cMinutes, Color cMinutesDark);
-    void setMinutesClock3(byte minutes, byte  ledPanelIndex, Color cMinutes, Color cMinutesDark);
-    void setTimeClock4(byte hours, byte minutes, byte ledPanelIndex, Color c1, Color c2, Color cCorner);
-    void setTimeClock5(byte hours, byte minutes, byte seconds, byte ledPanelIndex, Color cHour, Color cMinutes, Color cSeconds);
-    void setBinaryClock5(int startIndex, int size, byte hours, byte ledPanelIndex, Color cHour);
+
+    //Design 2
+    void setMinutesClock2(byte minutes, byte  ledPanelIndex, Color cMinutes);
+
+    //Design 3
+    void setTimeClock3(byte hours, byte minutes, byte ledPanelIndex, Color cHour, Color cMinutes, Color cCorner);
+    //void setHours3(byte sIndex, byte hours, byte ledPanelIndex, Color c1, Color c2); 
+    
+    //Design 4
+    void setTimeClock4(byte hours, byte minutes, byte seconds, byte ledPanelIndex, Color cHour, Color cMinutes, Color cSeconds);
+    void setBinaryClock4(int startIndex, int size, byte hours, byte ledPanelIndex, Color c);
 };
 
 
