@@ -30,16 +30,20 @@ Person* Model::getPersonArray() {
 }
 
 
+void Model::clearPersons() {
+  for (int i = 0; i < 9; i++) {
+    persons[i].setId(-1L);
+   }
+}
+
 /**
 * add person == set present
 */
 void Model::addPerson(long id, Color c) {
   for (int i = 0; i < 9; i++) {
-    Person p = persons[i];
-
-    if (p.getId() == -1) {
-      p.setId(id);
-      p.setColor(c);
+    if (persons[i].getId() == -1L) {
+      persons[i].setId(id);
+      persons[i].setColor(c);
       break;
     }
   }
@@ -49,11 +53,10 @@ void Model::addPerson(long id, Color c) {
 * remove person == set absent
 */
 void Model::removePerson(long id) {
-  for (int i = 9; i >= 0; i--) {
-    Person p = persons[i];
-    if (p.getId() == id) {
-      p.setId(-1);
-      p.setColor(Color(0, 0, 0));
+  for (int i = 8; i >= 0; i--) {
+    if (persons[i].getId() == id) {
+      persons[i].setId(-1);
+      persons[i].setColor(Color(0, 0, 0));
       break;
     }
   }

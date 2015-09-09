@@ -24,6 +24,7 @@ class MsgHandler {
     void handlePresenceRemovePerson(String message);
     void handlePresencePresent(String message);
     void handlePresentAbsent(String message);
+    void handlePresenceClear();
     String getValue(String data, char separator, int index);
   
   public:

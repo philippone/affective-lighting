@@ -18,6 +18,7 @@ import net.philippschardt.interactivecube.AddPersonActivity;
 import net.philippschardt.interactivecube.R;
 import net.philippschardt.interactivecube.database.Contract;
 import net.philippschardt.interactivecube.database.PersonListAdapter;
+import net.philippschardt.interactivecube.util.Message;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -82,6 +83,8 @@ public class PresenceFragment extends Fragment {
     public void onStart() {
         super.onStart();
 
+
+
         SQLiteDatabase db = mListener.getDBHelper().getReadableDatabase();
         Cursor c = Contract.getPersons(db);
         PersonListAdapter adapter = new PersonListAdapter(getActivity(), c, true, mListener);
@@ -107,6 +110,8 @@ public class PresenceFragment extends Fragment {
             throw new ClassCastException(activity.toString()
                     + " must implement OnFragmentInteractionListener");
         }
+
+        mListener.sendMsg(Message.clearPersons());
 
 
     }
