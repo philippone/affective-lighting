@@ -28,7 +28,7 @@ void PresenceMode::execute(){
     if(persons[i].getId() != -1){
 
       int indication_start_corner = startIndices[k + startIndex];
-      int led_positions[] = {indication_start_corner, indication_start_corner + 1, indication_start_corner + 8 , indication start_corner + 9};
+      int led_positions[] = {indication_start_corner, indication_start_corner + 1, indication_start_corner + 8 , indication_start_corner + 9};
 
       for(int j = 0; j < 4 ; j++){
 
@@ -39,5 +39,7 @@ void PresenceMode::execute(){
       k++;
     } 
   }
+
+  ledController->showMatrix();
 }  
 
