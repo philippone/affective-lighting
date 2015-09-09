@@ -2,7 +2,7 @@
 
 
 Person::Person() {
-  id = -1;
+  id = -1L;
   color = Color(0,0,0);
 }
 

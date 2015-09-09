@@ -64,6 +64,10 @@ public class Message {
         return "pm_rp;"+ id + ";";
     }
 
+    public static String clearPersons() {
+        return "pm_c;";
+    }
+
     /**
      * set person present on arduino
      * */

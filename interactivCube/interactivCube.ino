@@ -22,6 +22,7 @@
 #include "NightLightMode.h";
 #include "TemperatureMode.h";
 #include "DiscoMode.h"
+#include "PresenceMode.h"
 
 ModeManager modeMng;
 LedController ledController(384, 6);
@@ -30,6 +31,7 @@ MsgHandler msgHandler(&model);
 ClockMode clockMode(&ledController, &model,&msgHandler);
 NightLightMode nightLightMode(3, &ledController, &model);
 TemperatureMode temperatureMode(0, &ledController, &model);
+PresenceMode presMode(&ledController, &model);
 DiscoMode discoMode(2, &ledController, &model, &msgHandler);
 
 
@@ -47,7 +49,7 @@ Color c4 = Color(255, 0, 255);
   c1,c1,c1,c3,c3,c1,c1,c1
 };*/
 
-int mode = 3;
+int mode = 4;
 unsigned long timer0;
 #define interval 1000
 // the interval in mS 
@@ -73,8 +75,6 @@ void setup() {
     Serial.println(modeMng.isGyroConnected() ? "MPU6050 connection successful" : "MPU6050 connection failed");
 
     setTime(1,0,0,2,9,15);
-
-    //TODO: set which clock design is used
 }
 
 
@@ -87,10 +87,15 @@ void loop() {
   //executes our code every interval (in milliseconds)
   if (passed > interval) {
     timer0 = millis();
-    mode = modeMng.getCurrentMode();
+    int newmode = modeMng.getCurrentMode();
+    if(newmode != mode){
+       ledController.displayOff();  
+       mode = newmode;
+    }
+    
     //Serial.println(modeMng.getAccelX());
     
-    /*
+    
     Serial.println();
     Serial.print("Mode: ");
     Serial.print(mode);
@@ -100,7 +105,7 @@ void loop() {
     Serial.print(modeMng.getAccelY());
     Serial.print(" az: ");
     Serial.print(modeMng.getAccelZ());
-*/
+
   }
     //switch over all modes
     
@@ -113,6 +118,7 @@ void loop() {
     else if (mode == 1){
       //ledController.displayColor(Color(0,16,16));
       //ledController.displayPattern(mode1);
+      presMode.execute();
       }
     // Nachtlicht
     else if (mode == 2){
@@ -136,6 +142,7 @@ void loop() {
     else if (mode == 5){
       //ledController.displayColor(Color(16,0,0));
       //ledController.displayPattern(mode1);
+      //discoMode.execute();
       discoMode.execute2();
       }    
 

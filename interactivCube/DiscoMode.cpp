@@ -21,7 +21,7 @@ DiscoMode::DiscoMode(int p, LedController* contr, Model* m, MsgHandler* mHandler
 
 void DiscoMode::execute(){
   // read the value from the sensor:
-  sensorValue = analogRead(pin);
+/*  sensorValue = analogRead(pin);
   if (sensorValue < 1023){
       if(sensorValue < 128){
           volumeLevel = 8;
@@ -30,7 +30,7 @@ void DiscoMode::execute(){
           volumeLevel = 7;        
         }
       else if(sensorValue >= 256 && sensorValue < 384){
-          volumeLevel = 6;        
+          volumeLevel = 6;  
         }
       else if(sensorValue >= 384 && sensorValue < 512){
           volumeLevel = 5;        
@@ -45,10 +45,16 @@ void DiscoMode::execute(){
           volumeLevel = 2;        
         }
       else if(sensorValue >= 896 && sensorValue < 1023){
-          volumeLevel = 1;        
+          volumeLevel = 1;      
         }
-    }
+    }*/
 
+    delay(100);
+    //ledController->displayColor(cBackground);
+    ledController->displayOff();
+
+    //fake the value from the sensor
+    volumeLevel=random(1,9);
     
   getRandomArray(&randomArray[0]);
   //iterate over all sides
@@ -56,15 +62,14 @@ void DiscoMode::execute(){
     //set highest bar (main bar)
     setBar(sideIndex, randomArray[0], volumeLevel, cD, cM, cU);
 
-    byte tempVolumeLevel = volumeLevel;
-    byte helperByte = 0;
     //set remaining bars (iterate over the remaining rows)
       for (int rowIndex = 1; rowIndex < 8; rowIndex++){
-        if(helperByte%2==0){
-          helperByte++;
-          tempVolumeLevel--;
-        }
-        setBar(sideIndex, randomArray[rowIndex], tempVolumeLevel, cD, cM, cU);
+
+        setBar(sideIndex, randomArray[rowIndex], random(1, volumeLevel-(rowIndex-1)), cD, cM, cU);
+        //setBar2(sideIndex, randomArray[rowIndex], random(1, volumeLevel-(rowIndex-1)), cD, cM, cU);
+        
+        //setBar(sideIndex, randomArray[rowIndex], volumeLevel-(floor(rowIndex*0.5)), cD, cM, cU);
+        //setBar2(sideIndex, randomArray[rowIndex], volumeLevel-(floor(rowIndex*0.5)), cD, cM, cU);
       }
   }
   //show everything
@@ -102,22 +107,26 @@ void DiscoMode::execute2(){
         }
     }*/
     delay(100);
-    ledController->displayColor(cBackground);
+    //ledController->displayColor(cBackground);
+    ledController->displayOff();
 
     //fake the value from the sensor
-    volumeLevel=random(1,9);
+    volumeLevel=random(7,9);
     msgHandler->getDebugStream()->println(volumeLevel);
 
   //iterate over all sides
   for (int sideIndex = 1; sideIndex <= 4; sideIndex++){
     //set highest bar2 (main bar2)
-    setBar(sideIndex, fixedArray[0], volumeLevel, cD, cM, cU);
-    setBar(sideIndex, fixedArray[1], volumeLevel, cD, cM, cU);
+    //setBar(sideIndex, fixedArray[0], volumeLevel, cD, cM, cU);
+    //setBar(sideIndex, fixedArray[1], volumeLevel, cD, cM, cU);
 
 
     //set remaining bars (iterate over the remaining rows)
-      for (int rowIndex = 2; rowIndex < 8; rowIndex++){
-        setBar(sideIndex, fixedArray[rowIndex], volumeLevel-(floor(rowIndex*0.5)), cD, cM, cU);
+      for (int rowIndex = 0; rowIndex < 8; rowIndex++){
+        //setBar(sideIndex, fixedArray[rowIndex],  random(1, floor(volumeLevel-(rowIndex*0.5))), cD, cM, cU);
+        setBar2(sideIndex, fixedArray[rowIndex], random(1, floor(1+volumeLevel-(rowIndex*0.5))), cD, cM, cU);
+        
+        //setBar(sideIndex, fixedArray[rowIndex], volumeLevel-(floor(rowIndex*0.5)), cD, cM, cU);
         //setBar2(sideIndex, fixedArray[rowIndex], volumeLevel-(floor(rowIndex*0.5)), cD, cM, cU);
       }
   }
@@ -200,6 +209,10 @@ void DiscoMode::setBar2(int ledPanelIndex, int rowIndex, int height, Color cDown
   discoColorsToSet[2] = cDown;
   discoColorsToSet[1] = cDown;
   discoColorsToSet[0] = cDown;
+
+    for (int i = 0; i < height; i++) {
+      discoIndicesToSet[i] = rowIndex + discoIndicesToSet[i];
+    }
 
     for (int i = 0; i < height; i++) {
         ledController->displayPinOnMatrix(ledPanelIndex, discoIndicesToSet[i], discoColorsToSet[i]);
