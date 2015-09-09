@@ -28,7 +28,7 @@ class ClockMode {
 
     //Design 1
     void setHours1(byte startIndex, byte number, byte ledPanelIndex, Color cHour);
-    void setMinutesClock1(byte minutes, byte  ledPanelIndex, Color cMinutes, Color cMinutesDark);
+    void setMinutesClock1(byte minutes, byte  ledPanelIndex, Color cMinutes);
 
     //Design 2
     void setMinutesClock2(byte minutes, byte  ledPanelIndex, Color cMinutes);
