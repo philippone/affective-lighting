@@ -193,7 +193,7 @@ Stream* MsgHandler::getSerial() {
   return serial;
 }
 
-Stream* MsgHandler::getDebugStream() {
+Stream* MsgHanlder::getDebugStream() {
   return debug;
 }
 
