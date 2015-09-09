@@ -14,6 +14,7 @@ class PresenceMode {
   public:
     PresenceMode(LedController* contr, Model* m);
     void execute();  
+    void rotate(int index, int rotations);
   };
 
 
