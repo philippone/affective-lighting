@@ -22,6 +22,16 @@ void Model::setClockDesign(byte design) {
 /**Clock Mode stuff end**/
 
 
+
+/**Presence Mode stuff begin **/
+
+Person* Model::getPersonArray() {
+  return persons;
+}
+
+
+/**Presence Mode stuff end **/
+
 /**NightLightMode stuff begin**/
 
 Color* Model::getNightLightColor() {
