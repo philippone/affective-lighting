@@ -26,7 +26,6 @@
 
 ModeManager modeMng;
 LedController ledController(384, 6);
-//LedController ledController(128, 6);
 Model model;
 MsgHandler msgHandler(&model);
 ClockMode clockMode(&ledController, &model,&msgHandler);
@@ -56,8 +55,7 @@ unsigned long timer0;
 // the interval in mS 
 int passed;
 
-//1-Corner//2-Bar//3-60min//4-Binary
-byte clockDesign = 2;
+byte clockDesign = 5;
 
 
 void setup() {
@@ -75,7 +73,7 @@ void setup() {
     modeMng.initGyro();
     Serial.println(modeMng.isGyroConnected() ? "MPU6050 connection successful" : "MPU6050 connection failed");
 
-    setTime(3,20,0,2,9,15);
+    setTime(10,58,0,2,9,15);
 
     //TODO: set which clock design is used
 }
@@ -145,6 +143,7 @@ void loop() {
     else if (mode == 5){
       //ledController.displayColor(Color(16,0,0));
       //ledController.displayPattern(mode1);
+      //discoMode.execute();
       discoMode.execute2();
       }    
 
