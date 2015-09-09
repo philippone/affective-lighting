@@ -30,7 +30,7 @@ MsgHandler msgHandler(&model);
 ClockMode clockMode(&ledController, &model,&msgHandler);
 NightLightMode nightLightMode(3, &ledController, &model);
 TemperatureMode temperatureMode(0, &ledController, &model);
-DiscoMode discoMode(2, &ledController, &model);
+DiscoMode discoMode(2, &ledController, &model, &msgHandler);
 
 
 Color c2 = Color(255,0,0);
@@ -135,7 +135,7 @@ void loop() {
     else if (mode == 5){
       //ledController.displayColor(Color(16,0,0));
       //ledController.displayPattern(mode1);
-      discoMode.execute();
+      discoMode.execute2();
       }    
 
 }

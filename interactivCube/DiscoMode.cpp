@@ -10,10 +10,11 @@ Color cD =  Color(0, 16, 0);
 Color cM = Color(16, 14, 3);
 Color cU =  Color(16, 0, 0);
 
-DiscoMode::DiscoMode(int p, LedController* contr, Model* m) {
+DiscoMode::DiscoMode(int p, LedController* contr, Model* m, MsgHandler* mHandler) {
   pin = p;  //default: A2
   ledController = contr;
   model = m;
+  msgHandler = mHandler;
 }
 
 void DiscoMode::execute(){
@@ -75,30 +76,38 @@ void DiscoMode::execute2(){
   if (sensorValue < 1023){
       if(sensorValue < 128){
           volumeLevel = 8;
+          ledController->displayPinOnMatrix(2, 7, cU);
         }
       else if(sensorValue >= 128 && sensorValue < 256){
           volumeLevel = 7;        
+          ledController->displayPinOnMatrix(2, 6, cU);
         }
       else if(sensorValue >= 256 && sensorValue < 384){
-          volumeLevel = 6;        
+          volumeLevel = 6;
+          ledController->displayPinOnMatrix(2, 5, cU);        
         }
       else if(sensorValue >= 384 && sensorValue < 512){
           volumeLevel = 5;        
+          ledController->displayPinOnMatrix(2, 4, cU);
         }
       else if(sensorValue >= 512 && sensorValue < 640){
           volumeLevel = 4;        
+          ledController->displayPinOnMatrix(2, 3, cU);
         }
       else if(sensorValue >= 640 && sensorValue < 768){
           volumeLevel = 3;        
+          ledController->displayPinOnMatrix(2, 2, cU);
         }
       else if(sensorValue >= 768 && sensorValue < 896){
           volumeLevel = 2;        
+          ledController->displayPinOnMatrix(2, 1, cU);
         }
       else if(sensorValue >= 896 && sensorValue < 1023){
-          volumeLevel = 1;        
+          volumeLevel = 1;      
+          ledController->displayPinOnMatrix(2, 0, cU);  
         }
     }
-
+/*
   //iterate over all sides
   for (int sideIndex = 1; sideIndex <= 4; sideIndex++){
     //set highest bar2 (main bar2)
@@ -115,7 +124,7 @@ void DiscoMode::execute2(){
         }
         setBar(sideIndex, fixedArray[rowIndex], tempVolumeLevel, cD, cM, cU);
       }
-  }
+  }*/
   //show everything
   ledController->showMatrix();
 }
@@ -142,6 +151,7 @@ void DiscoMode::setBar(int ledPanelIndex, int rowIndex, int height, Color cDown,
   for (int i = 0; i < 8; i++) {
     discoIndicesToSet[i] = 64;
   }
+ 
   if(height >0){
     //get indices to set
     for (int i = height; i <= 0; i--) {
