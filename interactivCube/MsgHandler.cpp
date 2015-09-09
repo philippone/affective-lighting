@@ -80,6 +80,10 @@ void MsgHandler::handle(String message) {
     handlePresenceRemovePerson(message.substring(6));
   }
 
+  else if (message.startsWith("pm_c;")) {
+    handlePresenceClear();
+  }
+
   /*
     // presence mode person is present
     else if (message.startsWith("pm_p;")) {
@@ -161,6 +165,10 @@ void MsgHandler::handlePresentAbsent(String message) {
   // todo remove person from model
 }
 
+
+void MsgHandler::handlePresenceClear() {
+  model->clearPersons();
+}
 
 /**
  * add person = set present

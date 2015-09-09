@@ -54,6 +54,7 @@ class Model {
     void removePerson(long id);
     void setPersonPresent(long id);
     void setPersonAbsent(long id);
+    void clearPersons();
 
     
 

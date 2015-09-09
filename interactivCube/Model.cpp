@@ -30,6 +30,12 @@ Person* Model::getPersonArray() {
 }
 
 
+void Model::clearPersons() {
+  for (int i = 0; i < 9; i++) {
+    persons[i].setId(-1L);
+   }
+}
+
 /**
 * add person == set present
 */
