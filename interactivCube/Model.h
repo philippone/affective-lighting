@@ -23,7 +23,7 @@ class Model {
 
 
     // PresenceMode
-    //Person persons[9];
+    Person persons[9];
 
     // debug
     boolean debugMode = false;
@@ -46,6 +46,16 @@ class Model {
     void setNightLightColor(Color c);
     int getNightLightFacettes();
     void setNightLightFacettes(int value);
+
+    // Presence Mode
+    Person* getPersonArray();
+    void setPersonArray(Person persons[]);
+    void addPerson(long id, Color c);
+    void removePerson(long id);
+    void setPersonPresent(long id);
+    void setPersonAbsent(long id);
+
+    
 
     // debug methods
     float getDebugTmp();
