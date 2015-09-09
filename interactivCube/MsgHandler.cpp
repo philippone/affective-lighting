@@ -1,4 +1,4 @@
-#include "MsgHandler.h"
+d#include "MsgHandler.h"
 
 
 MsgHandler::MsgHandler(Model* m) {
@@ -185,10 +185,15 @@ void MsgHandler::sendMsg(String msg) {
 
 void MsgHandler::debugMsg(String msg) {
   serial->println("d;" + msg);
+  debug->println("d;" + msg);
 }
 
 
 Stream* MsgHandler::getSerial() {
   return serial;
+}
+
+Stream* MsgHanlder::getDebugStream() {
+  return debug;
 }
 

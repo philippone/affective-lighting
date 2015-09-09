@@ -34,6 +34,7 @@ class MsgHandler {
 
     void debugMsg(String msg);
     Stream* getSerial();
+    Stream* getDebugStream();
 };
 
 
