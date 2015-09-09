@@ -83,7 +83,7 @@ public class PresenceFragment extends Fragment {
     public void onStart() {
         super.onStart();
 
-        mListener.sendMsg(Message.clearPersons());
+
 
         SQLiteDatabase db = mListener.getDBHelper().getReadableDatabase();
         Cursor c = Contract.getPersons(db);
@@ -110,6 +110,8 @@ public class PresenceFragment extends Fragment {
             throw new ClassCastException(activity.toString()
                     + " must implement OnFragmentInteractionListener");
         }
+
+        mListener.sendMsg(Message.clearPersons());
 
 
     }
