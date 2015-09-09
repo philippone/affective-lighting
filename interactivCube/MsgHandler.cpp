@@ -1,4 +1,4 @@
-d#include "MsgHandler.h"
+#include "MsgHandler.h"
 
 
 MsgHandler::MsgHandler(Model* m) {
@@ -193,7 +193,7 @@ Stream* MsgHandler::getSerial() {
   return serial;
 }
 
-Stream* MsgHanlder::getDebugStream() {
+Stream* MsgHandler::getDebugStream() {
   return debug;
 }
 

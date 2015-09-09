@@ -23,7 +23,7 @@ class Model {
 
 
     // PresenceMode
-    Person persons[9];
+    //Person persons[9];
 
     // debug
     boolean debugMode = false;
