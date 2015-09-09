@@ -15,6 +15,11 @@ class MsgHandler {
     Stream* serial;
     Stream* debug;
     void handle(String message);
+    void hanldeHandshakeClock(String message);
+    void handleNightLightPrimColor(String message);
+    void handleClockDesign(String message);
+    void handlePresencePresent(String message);
+    void handlePresentAbsent(String message);
     String getValue(String data, char separator, int index);
   
   public:
@@ -24,7 +29,7 @@ class MsgHandler {
     void sendMsg(String msg);
     void sendConnectionHandshake();
     
-    void hanldeHandshakeClock(String message);
+    
     void addDebugStream(Stream* debugStream);
 
     void debugMsg(String msg);

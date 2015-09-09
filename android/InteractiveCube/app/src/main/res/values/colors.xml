@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="white">#FFF</color>
+    <color name="black">#000</color>
+    <color name="black_semi_transparent">#DD000000</color>
+    <color name="white_semi_transparent">#CCFFFFFF</color>
+    <color name="black_rly_transparent">#66000000</color>
+
+    <color name="primary">#009688</color>
+    <color name="primary_dark">#00695c</color>
+    <color name="accent">#26a69a</color>
+
+    <color name="floatingButtonNormal">#ff9800</color>
+    <color name="floatingButtonPressed">#fff3e0</color>
+    <color name="floatingButtonRipple">#fff3ff</color>
+
+    <color name="blue">#3f51b5</color>
+    <color name="red">#f44336</color>
+    <color name="brown">#795548</color>
+    <color name="lightBlue">#03a9f4</color>
+    <color name="green">#4caf50</color>
+    <color name="lightGreen">#8bc34a</color>
+    <color name="bluegrey">#607d8b</color>
+    <color name="drawer_selected_background">#11000000</color>
+
+
+</resources>

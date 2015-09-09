@@ -59,8 +59,8 @@ byte clockDesign = 5;
 void setup() {
   
     Serial.begin(9600);
-    //Serial1.begin(9600);
-    msgHandler.init(&Serial);
+    Serial1.begin(9600);
+    msgHandler.init(&Serial1);
     msgHandler.addDebugStream(&Serial);
     
     // testmsg
@@ -80,7 +80,7 @@ void setup() {
 void loop() {
   // check if input is available
   msgHandler.checkInput();
-  
+
   passed = millis()-timer0;
   //Serial.println(timer0);
   //executes our code every interval (in milliseconds)
@@ -89,7 +89,7 @@ void loop() {
     mode = modeMng.getCurrentMode();
     //Serial.println(modeMng.getAccelX());
     
-    
+    /*
     Serial.println();
     Serial.print("Mode: ");
     Serial.print(mode);
@@ -99,7 +99,7 @@ void loop() {
     Serial.print(modeMng.getAccelY());
     Serial.print(" az: ");
     Serial.print(modeMng.getAccelZ());
-
+*/
   }
     //switch over all modes
     

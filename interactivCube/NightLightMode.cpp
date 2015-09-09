@@ -7,7 +7,7 @@ NightLightMode::NightLightMode(int p, LedController* ledCntr, Model* m) {
   
 }
 
-int monoC = 0;
+Color monoC = Color(0,0,0);
 
 void NightLightMode::execute() {
 
@@ -17,7 +17,10 @@ void NightLightMode::execute() {
 
     // Get the user controlled color from the Model
     // Color c = new Color(0,0,0);
-    // TODO: impl in Model : c = m->getNightlightColor();
+    // TODO: impl in Model : 
+    Color* c = model->getNightLightColor();
+    
+    //TDDO set brightness
 
     // Get the user controlled NightightMode from the Model
     byte nightlightMode = 0; // default
@@ -26,13 +29,16 @@ void NightLightMode::execute() {
     // simply map values to percent and regulate leds
     float perc = 1024.0 / 100.0 ;
     float brightness_perc = brightness / perc;
-    int monoC_new = (int) (brightness_perc * bla * 0.01);
+    
+    int monoC_new_r = (int) ((100-brightness_perc) * c->r * 0.01 );
+    int monoC_new_g = (int) ((100-brightness_perc) * c->g * 0.01 );
+    int monoC_new_b = (int) ((100-brightness_perc) * c->b * 0.01 );
+    Color c_new = Color(monoC_new_r, monoC_new_g, monoC_new_b);
 
-
-    if (monoC != monoC_new) {
-      monoC = monoC_new;
-      Color c = Color(monoC, monoC, monoC);
-      ledController->displayColor(c);
+    if (!monoC.equals(c_new)) {
+      monoC = c_new ;
+      
+      ledController->displayColor(c_new);
       ledController->showMatrix();
     }
     

@@ -27,6 +27,10 @@
     <string name="mode_presence">Presence Mode</string>
     <string name="primaryColor">Primary Color</string>
     <string name="cancel">Cancel</string>
+    <string name="clock_design_title">Clock Design</string>
+    <string name="title_activity_add_person">AddPersonActivity</string>
+    <string name="color">Color</string>
+    <string name="delete_person">delete</string>
 
 
 </resources>
