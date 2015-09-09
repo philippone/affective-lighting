@@ -160,7 +160,6 @@ void ClockMode::execute(byte clockDesign) {
   */
   
    //initialize array with background color
-      ledController->displayColor(clock1Background);
       ledController->displayPinsInColor((64*2)+40,(64*2)+64, clock2Background2);
  
       //set start position of the hour
@@ -189,7 +188,6 @@ void ClockMode::execute(byte clockDesign) {
   /*
   * set side 5 with clockDesign 5 
   */
-      //ledController->displayColor(clock1Background);
       setTimeClock5(hours, minutes, seconds, 5, clock1Hours, clock1Minutes, clock4Corners);
       break;
   }
