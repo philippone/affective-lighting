@@ -55,10 +55,10 @@ public class PersonListAdapter extends CursorAdapter {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     // add person on arduino
-                    mListener.sendMsg(Message.setPresencePresent(id, color));
+                    mListener.sendMsg(Message.addPersonOnArduino(id, color));
                 } else {
                     // remove person on arduino
-                    mListener.sendMsg(Message.setPresenceAbsent(id));
+                    mListener.sendMsg(Message.removePersonOnArduino(id));
                 }
             }
         });

@@ -18,6 +18,10 @@ class MsgHandler {
     void hanldeHandshakeClock(String message);
     void handleNightLightPrimColor(String message);
     void handleClockDesign(String message);
+    
+    //void handlePresencePersonArray(String message);
+    void hanldePresenceAddPerson(String message);
+    void handlePresenceRemovePerson(String message);
     void handlePresencePresent(String message);
     void handlePresentAbsent(String message);
     String getValue(String data, char separator, int index);
@@ -34,6 +38,7 @@ class MsgHandler {
 
     void debugMsg(String msg);
     Stream* getSerial();
+    Stream* getDebugStream();
 };
 
 
