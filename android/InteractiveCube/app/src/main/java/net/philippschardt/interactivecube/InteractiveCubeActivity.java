@@ -326,6 +326,9 @@ public class InteractiveCubeActivity extends ActionBarActivity
         int sec = currentLocalTime.getSeconds();
         int month = currentLocalTime.getMonth();
         sendMsg("hc;" + hours + ";" + min + ";" + sec + ";" + day + ";" + month + ";" + year);
+
+
+
     }
 
 

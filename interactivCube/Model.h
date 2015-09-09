@@ -51,7 +51,7 @@ class Model {
     Person* getPersonArray();
     void setPersonArray(Person persons[]);
     void addPerson(long id, Color c);
-    void removePErson(long id);
+    void removePerson(long id);
     void setPersonPresent(long id);
     void setPersonAbsent(long id);
 

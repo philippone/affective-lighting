@@ -71,14 +71,33 @@ void MsgHandler::handle(String message) {
   }
 
   // presence mode person is present
-  else if (message.startsWith("pm_p;")) {
-    handlePresencePresent(message.substring(5));
+  else if (message.startsWith("pm_ap;")) {
+    hanldePresenceAddPerson(message.substring(6));
   }
 
   // presence mode person is absent
-  else if (message.startsWith("pm_a;")) {
-    handlePresencePresent(message.substring(5));
+  else if (message.startsWith("pm_rp;")) {
+    handlePresenceRemovePerson(message.substring(6));
   }
+
+  /*
+    // presence mode person is present
+    else if (message.startsWith("pm_p;")) {
+      handlePresencePresent(message.substring(5));
+    }
+
+    // presence mode person is absent
+    else if (message.startsWith("pm_a;")) {
+      handlePresencePresent(message.substring(5));
+    }
+  */
+
+
+
+
+
+
+
 }
 
 void MsgHandler::hanldeHandshakeClock(String message) {
@@ -124,10 +143,7 @@ void MsgHandler::handleClockDesign(String message) {
 * input: id;r;g;b
 */
 void MsgHandler::handlePresencePresent(String message) {
-  long id = getValue(message, ';', 0).toInt(); // hope it works 
-  int r = getValue(message, ';', 1).toInt();
-  int g = getValue(message, ';', 2).toInt();
-  int b = getValue(message, ';', 3).toInt();
+  long id = getValue(message, ';', 0).toInt(); // hope it works
 
   // TODO add person to model
 }
@@ -139,11 +155,40 @@ void MsgHandler::handlePresencePresent(String message) {
 * input: id;
 */
 void MsgHandler::handlePresentAbsent(String message) {
-   
-   long id = getValue(message, ';', 0).toInt(); // hope it works 
 
-  // todo remove person from model 
+  long id = getValue(message, ';', 0).toInt(); // hope it works
+
+  // todo remove person from model
 }
+
+
+/**
+ * add person = set present
+ * message: "pm_ap;r;g;b;"
+ * input: "r;g;b;"
+*/
+void MsgHandler::hanldePresenceAddPerson(String message) {
+  long id = getValue(message, ';', 0).toInt(); // hope it works
+  int r = getValue(message, ';', 1).toInt();
+  int g = getValue(message, ';', 2).toInt();
+  int b = getValue(message, ';', 3).toInt();
+
+  model->addPerson(id, Color(r, g, b));
+}
+
+
+/**
+ * remove person = set absent
+ * message: "pm_rp;r;g;b;"
+ * input: "r;g;b;"
+*/
+void MsgHandler::handlePresenceRemovePerson(String message) {
+
+  long id = getValue(message, ';', 0).toInt(); // hope it works
+
+  model->removePerson(id);
+}
+
 
 
 
