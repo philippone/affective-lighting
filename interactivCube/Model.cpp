@@ -30,6 +30,36 @@ Person* Model::getPersonArray() {
 }
 
 
+/**
+* add person == set present
+*/
+void Model::addPerson(long id, Color c) {
+  for (int i = 0; i < 9; i++) {
+    Person p = persons[i];
+
+    if (p.getId() == -1) {
+      p.setId(id);
+      p.setColor(c);
+      break;
+    }
+  }
+}
+
+/**
+* remove person == set absent
+*/
+void Model::removePerson(long id) {
+  for (int i = 9; i >= 0; i--) {
+    Person p = persons[i];
+    if (p.getId() == id) {
+      p.setId(-1);
+      p.setColor(Color(0, 0, 0));
+      break;
+    }
+  }
+}
+
+
 /**Presence Mode stuff end **/
 
 /**NightLightMode stuff begin**/
@@ -39,9 +69,9 @@ Color* Model::getNightLightColor() {
 }
 
 void Model::setNightLightColor(Color c) {
- nightLight_baseColor->r = c.r;
- nightLight_baseColor->g = c.g;
- nightLight_baseColor->b = c.b;
+  nightLight_baseColor->r = c.r;
+  nightLight_baseColor->g = c.g;
+  nightLight_baseColor->b = c.b;
 }
 
 int Model::getNightLightFacettes() {
