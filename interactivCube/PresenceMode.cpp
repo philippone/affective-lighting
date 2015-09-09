@@ -5,6 +5,16 @@ PresenceMode::PresenceMode(LedController* contr, Model* m) {
   model = m;
 }
 
+
 void PresenceMode::execute(){
-  
+
+  Person* persons = model->getPersonArray();
+
+  for(int i = 0; i < 9 ; i++){
+
+    persons[i].
+    
   }
+
+}  
+
