@@ -24,7 +24,8 @@
 #include "DiscoMode.h"
 
 ModeManager modeMng;
-LedController ledController(384, 6);
+//LedController ledController(384, 6);
+LedController ledController(128, 6);
 Model model;
 MsgHandler msgHandler(&model);
 ClockMode clockMode(&ledController, &model,&msgHandler);

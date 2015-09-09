@@ -1,5 +1,3 @@
-#include <FHT.h>
-
 /*
   Analog Input
  Demonstrates analog input by reading an analog sensor on analog pin 0 and
@@ -29,7 +27,7 @@
 
  */
 
-int sensorPin = A2;    // select the input pin for the potentiometer
+int sensorPin = A0;    // select the input pin for the potentiometer
 
 int sensorValue = 0;  // variable to store the value coming from the sensor
 
@@ -40,6 +38,7 @@ void setup() {
 
 void loop() {
   // read the value from the sensor:
+  delay(200);
   sensorValue = analogRead(sensorPin);
   if (sensorValue < 1023){
 
