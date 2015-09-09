@@ -16,6 +16,8 @@ class Color {
   Color(byte r, byte g, byte b);
 
   boolean equals(Color c);
+
+  Color scale(int s);
 };
 
 #endif

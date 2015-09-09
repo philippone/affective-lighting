@@ -28,3 +28,14 @@ boolean Color::equals(Color c) {
   return e;
 }
 
+
+Color Color::scale(int s){
+  byte newR = floor(r / s);
+  byte newG = floor(g / s);
+  byte newB = floor(b / s);
+
+  Color c = Color(newR, newG, newB);
+
+  return c;
+}
+
