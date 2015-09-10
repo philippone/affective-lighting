@@ -5,27 +5,33 @@ byte indicesToSet[17];
 
 Color clockMatrix[64];
 
-Color clock1Background = Color(12, 12, 12);
+Color clockBackground = Color(3, 3, 3);
 
 //Colors clock1
-Color clock1Hours = Color(0, 0, 20);
-Color clock1Minutes =  Color(0, 30, 0);
-Color clock1MinutesDark =  Color(0, 4, 0);
+//Color clock1Hours = Color(0, 0, 20);
+//Color clock1Minutes =  Color(0, 20, 0);
+Color clock1Hours = Color(22, 7, 0);
+Color clock1Minutes = Color(9, 17, 5);
 
 //Colors clock2
-Color clock2Background2 = Color(16, 14, 3);
-Color clock2Hours = Color(0, 0, 20);
-Color clock2Minutes = Color(0, 20, 0);
+//Color clock2Background2 = Color(16, 14, 3);
+//Color clock2Hours = Color(0, 0, 20);
+//Color clock2Minutes = Color(0, 20, 0);
+Color clock2Background2 = Color(15, 15, 15);
+Color clock2Hours = Color(22, 7, 0);
+Color clock2Minutes = Color(9, 17, 5);
 
 //Colors clock3
-Color clock3Hours = Color(16, 0, 0);
-Color clock3Minutes = Color(0, 20, 0);
-Color clock3Corners =  Color(4, 0, 0);
+//Color clock3Hours = Color(16, 0, 0);
+//Color clock3Minutes = Color(0, 20, 0);
+Color clock3Hours = Color(22, 7, 0);
+Color clock3Minutes = Color(9, 17, 5);
+Color clock3Corners = Color(0, 0, 0);
 
 //Colors clock4
-Color clock4Hours = Color(20, 0, 0);
-Color clock4Minutes = Color(0, 20, 0);
-Color clock4Seconds = Color(0, 0, 20);
+Color clock4Hours = Color(22, 7, 0);
+Color clock4Minutes = Color(9, 17, 5);
+Color clock4Seconds = Color(26, 19, 2);
 
 int startIndex = 0;
 
@@ -44,18 +50,14 @@ void ClockMode::execute(byte clockDesign) {
   int seconds = second();
 
   //illuminate top + bottom side
-  ledController->displayMatrix(1, clock1Background);
-  ledController->displayMatrix(3, clock1Background);
+  ledController->displayMatrix(1, clockBackground);
+  ledController->displayMatrix(3, clockBackground);
 
   switch (clockDesign) {
     // Um die Ecke bringen
     case 1:
       //initialize array with background color
-      for (int i = 0; i < 16; i++) {
-        clockMatrix[i] = clock1Background;
-      }
-
-      ledController->displayColor(clock1Background);
+      ledController->displayColor(clockBackground);
 
       //set start position of the hour
       if(hours<10){
@@ -77,17 +79,17 @@ void ClockMode::execute(byte clockDesign) {
 
 
       //set minutes on all 4 sides
-      setMinutesClock1(minutes, 0, clock1Minutes, clock1MinutesDark);
-      setMinutesClock1(minutes, 2, clock1Minutes, clock1MinutesDark);
-      setMinutesClock1(minutes, 4, clock1Minutes, clock1MinutesDark);
-      setMinutesClock1(minutes, 5, clock1Minutes, clock1MinutesDark);
+      setMinutesClock1(minutes, 0, clock1Minutes);
+      setMinutesClock1(minutes, 2, clock1Minutes);
+      setMinutesClock1(minutes, 4, clock1Minutes);
+      setMinutesClock1(minutes, 5, clock1Minutes);
 
       break;
 
     // Ladebalken und Zahl
     case 2:
       //initialize array with background color
-      ledController->displayColor(clock1Background);
+      ledController->displayColor(clockBackground);
 
       //set Background 2
       ledController->displayPinsInColor(40,64, clock2Background2);
@@ -134,7 +136,7 @@ void ClockMode::execute(byte clockDesign) {
 
     //BinärUhr
     case 4:
-      ledController->displayColor(clock1Background);
+      ledController->displayColor(clockBackground);
       setTimeClock4(hours, minutes, seconds, 0, clock4Hours, clock4Minutes, clock4Seconds);
       setTimeClock4(hours, minutes, seconds, 2, clock4Hours, clock4Minutes, clock4Seconds);
       setTimeClock4(hours, minutes, seconds, 4, clock4Hours, clock4Minutes, clock4Seconds);
@@ -148,10 +150,7 @@ void ClockMode::execute(byte clockDesign) {
   */
     
     //initialize array with background color
-      for (int i = 0; i < 16; i++) {
-        clockMatrix[i] = clock1Background;
-      }
-      ledController->displayColor(clock1Background);
+      ledController->displayColor(clockBackground);
 
       //set start position of the hour
       if(hours<10){
@@ -169,7 +168,7 @@ void ClockMode::execute(byte clockDesign) {
       setHours1(startIndex, hours, 0, clock1Hours);
 
       //set minutes on all 4 sides
-      setMinutesClock1(minutes, 0, clock1Minutes, clock1MinutesDark);
+      setMinutesClock1(minutes, 0, clock1Minutes);
 
   /*
   * set side 2 with clockDesign 2 : Bar Design
@@ -432,7 +431,7 @@ void ClockMode::setHours1(byte sIndex, byte number, byte ledPanelIndex, Color cH
 }
 
 //minutes have to be between 0-59
-void ClockMode::setMinutesClock1(byte minutes, byte  ledPanelIndex, Color cMinutes, Color cMinutesDark) {
+void ClockMode::setMinutesClock1(byte minutes, byte  ledPanelIndex, Color cMinutes) {
   byte number = floor(minutes / 4);
 
   int minuteArray[15] = {7, 15, 23, 31, 39, 47, 55, 63, 62, 61, 60, 59, 58, 57, 56};
@@ -441,7 +440,7 @@ void ClockMode::setMinutesClock1(byte minutes, byte  ledPanelIndex, Color cMinut
   }
 
   for (int i = number + 1; i < 15; i++) {
-    ledController->displayPinOnMatrix(ledPanelIndex , minuteArray[i], cMinutesDark);
+    ledController->displayPinOnMatrix(ledPanelIndex , minuteArray[i], cMinutes.scale(5));
   }
 }
 
@@ -734,7 +733,11 @@ void ClockMode::setTimeClock4(byte hours, byte minutes, byte seconds, byte ledPa
 }
 
 void ClockMode::setBinaryClock4(int startIndex, int size, byte number, byte ledPanelIndex, Color c){
-  int binary[size];    
+  int binary[size];
+
+  for(int i=0; i<size; i++){
+    binary[i] = 0;    
+  }
 
   int helpDiv = floor(number / 2.0f);
   int helpMod = number % 2;
