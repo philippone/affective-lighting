@@ -32,6 +32,7 @@ public class PresenceFragment extends Fragment {
 
     private OnCommunicationListener mListener;
     private ListView listView;
+    private FloatingActionButton fab;
 
     /**
      * Use this factory method to create a new instance of
@@ -63,7 +64,7 @@ public class PresenceFragment extends Fragment {
 
         listView = (ListView) v.findViewById(R.id.listView_presence);
 
-        FloatingActionButton fab = (FloatingActionButton) v.findViewById(R.id.fab);
+        fab = (FloatingActionButton) v.findViewById(R.id.fab);
         //fab.attachToListView(listView);
 
 
@@ -75,6 +76,8 @@ public class PresenceFragment extends Fragment {
             }
         });
 
+
+
         return v;
     }
 
@@ -83,7 +86,7 @@ public class PresenceFragment extends Fragment {
     public void onStart() {
         super.onStart();
 
-
+        mListener.sendMsg(Message.clearPersons());
 
         SQLiteDatabase db = mListener.getDBHelper().getReadableDatabase();
         Cursor c = Contract.getPersons(db);
@@ -99,6 +102,12 @@ public class PresenceFragment extends Fragment {
                 startActivity(i);
             }
         });
+
+        if (listView.getCount() >= 9) {
+            fab.setVisibility(View.GONE);
+        } else {
+            fab.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
@@ -111,7 +120,7 @@ public class PresenceFragment extends Fragment {
                     + " must implement OnFragmentInteractionListener");
         }
 
-        mListener.sendMsg(Message.clearPersons());
+
 
 
     }
