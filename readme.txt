@@ -23,7 +23,7 @@ Innenwürfel Beschriftung entfernen, Micro-USB dranlöten, Akku anschließen, zu
 
 - NIGHT LIGHT MODE: Farbwert einschränken
 
-- CLOCK MODE: feste Farben definieren
+- CLOCK MODE: feste Farben definieren, Uhrzeit aus dem Model laden
 
 - DISCO MODE: Lautstärke via App senden? Markus schreiben wegen Sensor?
 ——————————————————

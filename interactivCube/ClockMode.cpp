@@ -759,6 +759,6 @@ void ClockMode::setBinaryClock4(int startIndex, int size, byte number, byte ledP
     if(binary[i]==1)
         ledController->displayPinOnMatrix(ledPanelIndex, startIndex+i, c);
     else
-        ledController->displayPinOnMatrix(ledPanelIndex, startIndex+i, c.scale(10));
+        ledController->displayPinOnMatrix(ledPanelIndex, startIndex+i, c.scale(5));
   }
 }
