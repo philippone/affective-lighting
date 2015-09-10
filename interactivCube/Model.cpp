@@ -33,7 +33,7 @@ Person* Model::getPersonArray() {
 void Model::clearPersons() {
   for (int i = 0; i < 9; i++) {
     persons[i].setId(-1L);
-   }
+  }
 }
 
 /**
@@ -106,4 +106,20 @@ float Model::getDebugTmp() {
 
 
 /**Debug Mode stuff end **/
+
+
+
+boolean Model::isTempDebug() {
+  return tempDebug;
+}
+void Model::setTempDebug(boolean b) {
+  tempDebug = b;  
+}
+
+void Model::setTempDebugValue(float v) {
+  debug_tmp  = v;
+}
+float Model::getTempDebugValue() {
+  return debug_tmp;
+}
 

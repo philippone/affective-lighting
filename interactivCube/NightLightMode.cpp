@@ -11,6 +11,7 @@ Color monoC = Color(0,0,0);
 
 void NightLightMode::execute() {
 
+    int bla = model->getMaxBrightness(); //32; 
     // measure the brightness in the room
     int brightness = analogRead(pin);
 

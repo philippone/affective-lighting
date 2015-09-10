@@ -1,11 +1,12 @@
 #include "LedController.h"
 
 
-LedController::LedController(uint16_t count, uint8_t pin) {
+LedController::LedController(uint16_t count, uint8_t pin, Model* m) {
   // init pixels
   matrixPinCount = 64;
   ledCount = count;
   ledPin = pin;
+  model = m;
   pixels = new Adafruit_NeoPixel(ledCount, ledPin, NEO_GRB + NEO_KHZ800);
 
 #if defined (__AVR_ATtiny85__)
@@ -22,11 +23,13 @@ LedController::LedController(uint16_t count, uint8_t pin) {
 * display pin  in color c
 */
 void LedController::displayPinInColor(int pin, Color c) {
+  scaleColor(&c);
   pixels->setPixelColor(pin, pixels->Color(c.r, c.g, c.b));
   //pixels->show(); // This sends the updated pixel color to the hardware.
 }
 
 void LedController::displayPinInColor(int pin, uint32_t c) {
+
   pixels->setPixelColor(pin, c);
 }
 
@@ -35,6 +38,7 @@ void LedController::displayPinInColor(int pin, uint32_t c) {
 * display from start to ending ping in color c
 */
 void LedController::displayPinsInColor(int start, int ending, Color c) {
+  scaleColor(&c);
   for (int i = start; i < ending; i++) {
     pixels->setPixelColor(i, pixels->Color(c.r, c.g, c.b));
   }
@@ -42,6 +46,7 @@ void LedController::displayPinsInColor(int start, int ending, Color c) {
 }
 
 void LedController::displayPinsInColor(int start, int ending, uint32_t c) {
+
   for (int i = start; i < ending; i++) {
     pixels->setPixelColor(i, c);
   }
@@ -71,6 +76,7 @@ void LedController::displayColor(uint32_t c) {
 void LedController::displayPattern(Color matrix[]) {
   for (int i = 0; i < 64 ; i++) {
     Color c = matrix[i];
+    scaleColor(&c);
     pixels->setPixelColor(i, pixels->Color(c.r, c.g, c.b));
   }
   //pixels->show(); // This sends the updated pixel color to the hardware.
@@ -210,14 +216,69 @@ void LedController::RotateArray(boolean clockwise, Color matrix[]) {
 // The colours are a transition r - g - b - back to r.
 uint32_t LedController::Wheel(byte WheelPos) {
   WheelPos = 255 - WheelPos;
-  if(WheelPos < 85) {
-   return pixels->Color(255 - WheelPos * 3, 0, WheelPos * 3);
-  } else if(WheelPos < 170) {
+  if (WheelPos < 85) {
+    Color c = Color(255 - WheelPos * 3, 0, WheelPos * 3);
+    scaleColor(&c);
+    return pixels->Color(c.r, c.g, c.b);
+
+  } else if (WheelPos < 170) {
     WheelPos -= 85;
-   return pixels->Color(0, WheelPos * 3, 255 - WheelPos * 3);
+
+    Color c = Color(0, WheelPos * 3, 255 - WheelPos * 3);
+    scaleColor(&c);
+    return pixels->Color(c.r, c.g, c.b);
   } else {
-   WheelPos -= 170;
-   return pixels->Color(WheelPos * 3, 255 - WheelPos * 3, 0);
+    WheelPos -= 170;
+
+    Color c = Color(WheelPos * 3, 255 - WheelPos * 3, 0);
+    scaleColor(&c);
+    return pixels->Color(c.r, c.g, c.b);
+
+
+  }
+}
+
+
+/**
+*
+*/
+void LedController::scaleColor(Color* c) {
+  float maxBrightness = model->getMaxBrightness();
+  if (c->r > maxBrightness || c->g > maxBrightness || c->b > maxBrightness) {
+    float  scaleFactor = 0;
+
+    // find biggest value
+    if (c->r > c->g) {
+      if (c->r > c->b) {
+        // red biggest
+        scaleFactor = maxBrightness / c->r;
+        c->r = maxBrightness;
+        c->g = c->g * scaleFactor;
+        c->b = c->b * scaleFactor;
+      }
+    } else {
+      if (c->g > c->b) {
+        // green biggest value
+
+        scaleFactor = maxBrightness / c->g;
+        c->g = maxBrightness;
+        c->r = c->r * scaleFactor;
+        c->b = c->b * scaleFactor;
+
+
+      } else {
+        // blue biggest value
+        scaleFactor = maxBrightness / c->b;
+        c->b = maxBrightness;
+        c->r = c->r * scaleFactor;
+        c->g = c->g * scaleFactor;
+
+      }
+    }
+
+  } else {
+    // do nothing
+    return;
   }
 }
 

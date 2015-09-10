@@ -18,7 +18,7 @@ class Model {
     byte clockDesign = 2;
 
     // NightLight Mode
-    Color* nightLight_baseColor = new Color(16,0,0);
+    Color* nightLight_baseColor = new Color(16,16,16);
     int nightLight_facettes = 32;
 
 
@@ -27,6 +27,7 @@ class Model {
 
     // debug
     boolean debugMode = false;
+    boolean tempDebug = false;
 
     // debug variables
     float debug_tmp = 14.0;
@@ -36,6 +37,11 @@ class Model {
     void setDebugMode(boolean onOff);
     int getMaxBrightness();
     void setMaxBrightness(int brightness);
+
+    boolean isTempDebug();
+    void setTempDebug(boolean b);
+    void setTempDebugValue(float v);
+    float getTempDebugValue();
 
     // ClockMode
     byte getClockDesign();
