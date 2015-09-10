@@ -25,6 +25,10 @@ class MsgHandler {
     void handlePresencePresent(String message);
     void handlePresentAbsent(String message);
     void handlePresenceClear();
+
+    void handleTempDebugMode(String message);
+    void handleTempDebugValue(String message);
+    
     String getValue(String data, char separator, int index);
   
   public:

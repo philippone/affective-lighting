@@ -1,11 +1,12 @@
 #include "LedController.h"
 
 
-LedController::LedController(uint16_t count, uint8_t pin) {
+LedController::LedController(uint16_t count, uint8_t pin, Model* m) {
   // init pixels
   matrixPinCount = 64;
   ledCount = count;
   ledPin = pin;
+  model = m;
   pixels = new Adafruit_NeoPixel(ledCount, ledPin, NEO_GRB + NEO_KHZ800);
 
 #if defined (__AVR_ATtiny85__)
@@ -28,6 +29,7 @@ void LedController::displayPinInColor(int pin, Color c) {
 }
 
 void LedController::displayPinInColor(int pin, uint32_t c) {
+
   pixels->setPixelColor(pin, c);
 }
 
@@ -44,7 +46,7 @@ void LedController::displayPinsInColor(int start, int ending, Color c) {
 }
 
 void LedController::displayPinsInColor(int start, int ending, uint32_t c) {
-  
+
   for (int i = start; i < ending; i++) {
     pixels->setPixelColor(i, c);
   }
@@ -215,13 +217,24 @@ void LedController::RotateArray(boolean clockwise, Color matrix[]) {
 uint32_t LedController::Wheel(byte WheelPos) {
   WheelPos = 255 - WheelPos;
   if (WheelPos < 85) {
-    return pixels->Color(255 - WheelPos * 3, 0, WheelPos * 3);
+    Color c = Color(255 - WheelPos * 3, 0, WheelPos * 3);
+    scaleColor(&c);
+    return pixels->Color(c.r, c.g, c.b);
+
   } else if (WheelPos < 170) {
     WheelPos -= 85;
-    return pixels->Color(0, WheelPos * 3, 255 - WheelPos * 3);
+
+    Color c = Color(0, WheelPos * 3, 255 - WheelPos * 3);
+    scaleColor(&c);
+    return pixels->Color(c.r, c.g, c.b);
   } else {
     WheelPos -= 170;
-    return pixels->Color(WheelPos * 3, 255 - WheelPos * 3, 0);
+
+    Color c = Color(WheelPos * 3, 255 - WheelPos * 3, 0);
+    scaleColor(&c);
+    return pixels->Color(c.r, c.g, c.b);
+
+
   }
 }
 
@@ -230,6 +243,7 @@ uint32_t LedController::Wheel(byte WheelPos) {
 *
 */
 void LedController::scaleColor(Color* c) {
+  float maxBrightness = model->getMaxBrightness();
   if (c->r > maxBrightness || c->g > maxBrightness || c->b > maxBrightness) {
     float  scaleFactor = 0;
 

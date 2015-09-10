@@ -84,6 +84,17 @@ void MsgHandler::handle(String message) {
     handlePresenceClear();
   }
 
+  else if (message.startsWith("tm_d;")) {
+    handleTempDebugMode(message.substring(5));
+  
+  } 
+  else if (message.startsWith("tm_dv;")) {
+    handleTempDebugValue(message.substring(6));
+  
+  } 
+
+
+  
   /*
     // presence mode person is present
     else if (message.startsWith("pm_p;")) {
@@ -195,6 +206,34 @@ void MsgHandler::handlePresenceRemovePerson(String message) {
   long id = getValue(message, ';', 0).toInt(); // hope it works
 
   model->removePerson(id);
+}
+
+
+/**
+* enable/disbale temp debug mode
+* message: tm_d;" +  d + ";";
+* input: d as int
+*/
+void MsgHandler::handleTempDebugMode(String message) {
+  int d = getValue(message, ';', 0).toInt();
+
+  if (d == 1) {
+    model->setTempDebug(true);
+  } else {
+    model->setTempDebug(false);
+  }
+}
+
+
+/**
+* message: tm_dv; " + temp + ";"
+* input temp as float
+*/
+void MsgHandler::handleTempDebugValue(String message) {
+
+  float v = getValue(message, ';', 0).toFloat();
+
+  model->setTempDebugValue(v);
 }
 
 

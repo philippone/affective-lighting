@@ -25,8 +25,8 @@
 #include "PresenceMode.h"
 
 ModeManager modeMng;
-LedController ledController(384, 6);
 Model model;
+LedController ledController(384, 6, &model);
 MsgHandler msgHandler(&model);
 ClockMode clockMode(&ledController, &model,&msgHandler);
 NightLightMode nightLightMode(3, &ledController, &model);
@@ -95,7 +95,7 @@ void loop() {
     
     //Serial.println(modeMng.getAccelX());
     
-    
+    /*
     Serial.println();
     Serial.print("Mode: ");
     Serial.print(mode);
@@ -105,7 +105,7 @@ void loop() {
     Serial.print(modeMng.getAccelY());
     Serial.print(" az: ");
     Serial.print(modeMng.getAccelZ());
-
+*/
   }
     //switch over all modes
     

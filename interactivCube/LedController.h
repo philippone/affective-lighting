@@ -8,22 +8,21 @@
 #include <Adafruit_NeoPixel.h>
 #include <avr/power.h>
 #include "Color.h"
+#include "Model.h"
 
 
 class LedController {
 
   private:
+    Model* model;
     int matrixPinCount;
     uint16_t ledCount;
     uint8_t ledPin;
     Adafruit_NeoPixel* pixels;
-
-    float maxBrightness = 8;
-    
     
   
   public:
-    LedController(uint16_t count, uint8_t pin);
+    LedController(uint16_t count, uint8_t pin, Model* model);
     void displayPinInColor(int pin, Color c);
     void displayPinInColor(int pin, uint32_t c);
     void displayPinsInColor(int start, int ending, Color c);
