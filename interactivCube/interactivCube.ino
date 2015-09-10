@@ -74,7 +74,7 @@ void setup() {
     modeMng.initGyro();
     Serial.println(modeMng.isGyroConnected() ? "MPU6050 connection successful" : "MPU6050 connection failed");
 
-    setTime(1,0,0,2,9,15);
+    setTime(9,44,37,2,9,15);
 }
 
 

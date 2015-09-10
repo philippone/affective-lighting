@@ -5,26 +5,33 @@ byte indicesToSet[17];
 
 Color clockMatrix[64];
 
-Color clockBackground = Color(5, 5, 5);
+Color clockBackground = Color(3, 3, 3);
 
 //Colors clock1
-Color clock1Hours = Color(0, 0, 20);
-Color clock1Minutes =  Color(0, 20, 0);
+//Color clock1Hours = Color(0, 0, 20);
+//Color clock1Minutes =  Color(0, 20, 0);
+Color clock1Hours = Color(22, 7, 0);
+Color clock1Minutes = Color(9, 17, 5);
 
 //Colors clock2
-Color clock2Background2 = Color(16, 14, 3);
-Color clock2Hours = Color(0, 0, 20);
-Color clock2Minutes = Color(0, 20, 0);
+//Color clock2Background2 = Color(16, 14, 3);
+//Color clock2Hours = Color(0, 0, 20);
+//Color clock2Minutes = Color(0, 20, 0);
+Color clock2Background2 = Color(15, 15, 15);
+Color clock2Hours = Color(22, 7, 0);
+Color clock2Minutes = Color(9, 17, 5);
 
 //Colors clock3
-Color clock3Hours = Color(16, 0, 0);
-Color clock3Minutes = Color(0, 20, 0);
-Color clock3Corners =  Color(4, 0, 0);
+//Color clock3Hours = Color(16, 0, 0);
+//Color clock3Minutes = Color(0, 20, 0);
+Color clock3Hours = Color(22, 7, 0);
+Color clock3Minutes = Color(9, 17, 5);
+Color clock3Corners = Color(0, 0, 0);
 
 //Colors clock4
-Color clock4Hours = Color(20, 0, 0);
-Color clock4Minutes = Color(0, 20, 0);
-Color clock4Seconds = Color(0, 0, 20);
+Color clock4Hours = Color(22, 7, 0);
+Color clock4Minutes = Color(9, 17, 5);
+Color clock4Seconds = Color(26, 19, 2);
 
 int startIndex = 0;
 
