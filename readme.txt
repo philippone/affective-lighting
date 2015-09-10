@@ -5,7 +5,6 @@ yoooooo
 Servuuuus! 
 
 
-
 https://github.com/LarsWerkman/HoloColorPicker
 
 
@@ -25,4 +24,6 @@ Innenwürfel Beschriftung entfernen, Micro-USB dranlöten, Akku anschließen, zu
 - NIGHT LIGHT MODE: Farbwert einschränken
 
 - CLOCK MODE: feste Farben definieren
+
+- DISCO MODE: Lautstärke via App senden? Markus schreiben wegen Sensor?
 ——————————————————
