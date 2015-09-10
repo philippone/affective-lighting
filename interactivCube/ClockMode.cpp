@@ -45,6 +45,8 @@ ClockMode::ClockMode(LedController* contr, Model* m, MsgHandler* msgH) {
 
 void ClockMode::execute(byte clockDesign) {
 
+  clockDesign = model->getClockDesign();
+
   int minutes = minute();
   int hours = hourFormat12();
   int seconds = second();
