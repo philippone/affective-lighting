@@ -65,6 +65,9 @@ public class InteractiveCubeActivity extends ActionBarActivity
                 (DrawerLayout) findViewById(R.id.drawer_layout));
 
 
+
+
+
         mDbHelper = new DBHelper(this);
 
 
@@ -101,6 +104,7 @@ public class InteractiveCubeActivity extends ActionBarActivity
                 break;
         }
 
+        onSectionAttached(position + 1);
         fragmentManager.beginTransaction()
                 .replace(R.id.container, currentFragment)
                 .commit();
@@ -328,8 +332,5 @@ public class InteractiveCubeActivity extends ActionBarActivity
         sendMsg("hc;" + hours + ";" + min + ";" + sec + ";" + day + ";" + month + ";" + year);
 
 
-
     }
-
-
 }

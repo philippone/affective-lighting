@@ -95,7 +95,7 @@ void loop() {
     
     //Serial.println(modeMng.getAccelX());
     
-    /*
+    
     Serial.println();
     Serial.print("Mode: ");
     Serial.print(mode);
@@ -105,7 +105,7 @@ void loop() {
     Serial.print(modeMng.getAccelY());
     Serial.print(" az: ");
     Serial.print(modeMng.getAccelZ());
-*/
+
   }
     //switch over all modes
     
